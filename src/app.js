@@ -14,6 +14,10 @@ app.get('/banco', function (req, res) {
   res.send('Teste de banco!');
 });
 
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
+
 app.listen(3000, function () {
   console.log('APP na porta 3000!');
 });
