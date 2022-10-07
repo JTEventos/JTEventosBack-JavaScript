@@ -9,6 +9,15 @@ const eventsRoute = require("./routes/events.route");
 
 const app = express();
 
+
+app.get('/banco', function (req, res) {
+  res.send('Teste de banco!');
+});
+
+app.listen(3000, function () {
+  console.log('APP na porta 3000!');
+});
+
 // Express middleware configuration
 app.set("port", process.env.PORT || 3000);
 app.use(helmet());
