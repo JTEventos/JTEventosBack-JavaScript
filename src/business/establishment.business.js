@@ -12,9 +12,9 @@ exports.createEstablishment = async (description, cep, street, streetNumber, str
     await establishmentRepository.createEstablishment(description, cep, street, streetNumber, streetComplement, neighborhood, city, state);
 }
 
-exports.updateEstablishment = async (id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber) => {
-    establishmentValidators.validateStatusNotEmpty(name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
-    await establishmentRepository.updateEstablishment(id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
+exports.updateEstablishment = async (id, description, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber) => {
+    establishmentValidators.validateStatusNotEmpty(description, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
+    await establishmentRepository.updateEstablishment(id, description, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
 }
 
 exports.deleteEstablishment = async (id) => {
