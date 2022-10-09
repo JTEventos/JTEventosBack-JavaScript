@@ -1,12 +1,15 @@
 const express = require("express");
-const usersController = require("../controllers/user.controller");
+const userController = require("../controllers/user.controller");
 
-const usersRoute = express.Router();
-const path = "/user";
+const userRoutes = express.Router();
+const path = "/users";
 
-usersRoute.get(path, usersController.findAll);
-usersRoute.get(path, usersController.findById);
-usersRoute.post(path, usersController.create);
-usersRoute.put(path, usersController.edit);
+const { checkSchema } = require("express-validator")
+const { getUserByIdSchema, createUserSchema, updateUserSchema } = require("./validators/user.route.validators")
 
-module.exports = usersRoute;
+userRoutes.get(path, userController.findAll);
+userRoutes.get(`${path}/:id`, checkSchema(getUserByIdSchema), userController.findById);
+userRoutes.post(path, checkSchema(createUserSchema), userController.createUser);
+userRoutes.put(`${path}/:id`, checkSchema(updateUserSchema), userController.updateUser);
+
+module.exports = userRoutes;

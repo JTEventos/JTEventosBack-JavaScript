@@ -1,13 +1,18 @@
 const express = require("express");
-const customersController = require("../controllers/customers.controller");
+const customerController = require("../controllers/customer.controller");
 
-const customersRoute = express.Router();
-const path = "/customer";
+const customerRoutes = express.Router();
+const path = "/customers";
 
-customersRoute.get(path, customersController.findAll);
-customersRoute.get(path, customersController.findById);
-customersRoute.post(path, customersController.create);
-customersRoute.put(path, customersController.edit);
-customersRoute.delete(path, customersController.delete);
+const { checkSchema } = require("express-validator")
+const { getCustomerByIdSchema, getCustomerByNameSchema, getCustomerByCpfSchema, createCustomerSchema, updateCustomerSchema } = require("./validators/customer.route.validators")
 
-module.exports = customersRoute;
+customerRoutes.get(path, customerController.findAll);
+customerRoutes.get(`${path}/:id`, checkSchema(getCustomerByIdSchema), customerController.findById);
+customerRoutes.get(`${path}/name/:name`, checkSchema(getCustomerByNameSchema), customerController.findByName);
+customerRoutes.get(`${path}/cpf/:cpf`, checkSchema(getCustomerByCpfSchema), customerController.findByCpf);
+customerRoutes.post(path, checkSchema(createCustomerSchema), customerController.createCustomer);
+customerRoutes.put(`${path}/:id`, checkSchema(updateCustomerSchema), customerController.updateCustomer);
+customerRoutes.delete(`${path}/:id`, checkSchema(getCustomerByIdSchema), customerController.deleteCustomer);
+
+module.exports = customerRoutes;

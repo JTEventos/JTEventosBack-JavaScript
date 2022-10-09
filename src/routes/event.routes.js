@@ -1,13 +1,15 @@
 const express = require("express");
-const eventsController = require("../controllers/event.controller");
+const eventController = require("../controllers/event.controller");
 
-const eventsRoute = express.Router();
+const eventRoutes = express.Router();
 const path = "/event";
 
-eventsRoute.get(path, eventsController.findAll);
-eventsRoute.get(path, eventsController.findById);
-eventsRoute.post(path, eventsController.create);
-eventsRoute.put(path, eventsController.edit);
-eventsRoute.delete(path, eventsController.delete);
+const { checkSchema } = require("express-validator")
+const { createEventSchema, updateEventSchema, deleteEventSchema } = require("./validators/event.route.validators")
 
-module.exports = eventsRoute;
+eventRoutes.get(path, eventController.findAll);
+eventRoutes.post(path, checkSchema(createEventSchema), eventController.createEvent);
+eventRoutes.put(`${path}/:id`, checkSchema(updateEventSchema), eventController.updateEvent);
+eventRoutes.delete(`${path}/:id`, checkSchema(deleteEventSchema), eventController.deleteEvent);
+
+module.exports = eventRoutes;
