@@ -13,7 +13,7 @@ exports.createEstablishment = async (description, cep, street, streetNumber, str
 }
 
 exports.updateEstablishment = async (id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber) => {
-    establishmentValidators.validateStatusNotEmpty(id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
+    establishmentValidators.validateStatusNotEmpty(name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
     await establishmentRepository.updateEstablishment(id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
 }
 

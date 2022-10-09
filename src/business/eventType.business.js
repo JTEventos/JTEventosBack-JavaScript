@@ -13,7 +13,7 @@ exports.createEventType = async (description) => {
 }
 
 exports.updateEventType = async (id, description) => {
-    eventTypeValidators.validateStatusNotEmpty(id, description);
+    eventTypeValidators.validateStatusNotEmpty(description);
     await eventTypeRepository.updateEventType(id, description);
 }
 

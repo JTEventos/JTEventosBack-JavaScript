@@ -18,6 +18,6 @@ exports.createUser = async (username, password) => {
 }
 
 exports.updateUser = async (id, username, password) => {
-    userValidators.validateStatusNotEmpty(id, username, password);
+    userValidators.validateStatusNotEmpty(username, password);
     await userRepository.updateUser(id, username, password);
 }

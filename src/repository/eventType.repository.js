@@ -13,6 +13,20 @@ exports.findAll = async () => {
     }
 }
 
+exports.findOne = async (id) => {
+    const db = await pool.connect();
+    const query = `SELECT * FROM EVENTTYPE WHERE ID = $1`;
+    try {
+        const result = await db.query(query, [id]);
+        return result.rowCount;
+    } catch(e) {
+        sqlErrorHandler(err);
+    } finally {
+        db.release();
+    }
+}
+
+
 exports.createEventType = async (description) => {
     const db = await pool.connect();
     try {

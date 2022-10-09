@@ -13,7 +13,7 @@ exports.createEventType = async (eventTypeId, customerId, establishmentId, descr
 }
 
 exports.updateEventType = async (id, eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList) => {
-    eventValidators.validateStatusNotEmpty(id, eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList);
+    eventValidators.validateStatusNotEmpty(eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList);
     await eventRepository.updateEvent(id, eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList);
 }
 

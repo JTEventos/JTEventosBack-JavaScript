@@ -13,6 +13,19 @@ exports.findAll = async () => {
     }
 }
 
+exports.findOne = async (id) => {
+    const db = await pool.connect();
+    const query = `SELECT * FROM CUSTOMERS WHERE ID = $1`;
+    try {
+        const result = await db.query(query, [id]);
+        return result.rowCount;
+    } catch(e) {
+        sqlErrorHandler(err);
+    } finally {
+        db.release();
+    }
+}
+
 exports.findById = async (id) => {
     const db = await pool.connect();
     const query = `SELECT * FROM CUSTOMERS WHERE ID = $1`;
