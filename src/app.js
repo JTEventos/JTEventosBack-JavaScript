@@ -3,6 +3,7 @@ const cors = require("cors");
 const errorHandler = require("errorhandler");
 const helmet = require("helmet");
 
+const authenticationRoute = require("./routes/authentication.routes");
 const userRoute = require("./routes/user.routes");
 const customerRoute = require("./routes/customer.routes");
 const eventTypeRoute = require("./routes/eventType.routes");
@@ -25,6 +26,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 //Adding routes
+app.use(authenticationRoute);
 app.use(userRoute);
 app.use(customerRoute);
 app.use(eventTypeRoute);

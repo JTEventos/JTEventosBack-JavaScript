@@ -1,4 +1,4 @@
-const { paramMustNotBeNull, notFound } = require("./utils/return-message");
+const { paramMustNotBeNull, userNotFound } = require("./utils/return-message");
 
 exports.validateFields = (username, password) => {
     if (!username && !password) {
@@ -8,6 +8,6 @@ exports.validateFields = (username, password) => {
 
 exports.validateIfExists = (user) => {
     if (user !== 1) {
-        throw notFound("Usuário");
+        throw userNotFound();
     }
 }

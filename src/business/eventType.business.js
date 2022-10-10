@@ -13,10 +13,14 @@ exports.createEventType = async (description) => {
 }
 
 exports.updateEventType = async (id, description) => {
-    eventTypeValidators.validateStatusNotEmpty(description);
+    eventTypeValidators.validateFields(description);
+    const eventType = await eventTypeRepository.checkIfExists(id);
+    eventTypeValidators.validateIfExists(eventType);
     await eventTypeRepository.updateEventType(id, description);
 }
 
 exports.deleteEventType = async (id) => {
+    const eventType = await eventTypeRepository.checkIfExists(id);
+    eventTypeValidators.validateIfExists(eventType);
     await eventTypeRepository.deleteEventType(id);
 }

@@ -2,33 +2,33 @@ exports.createEventSchema = {
     eventTypeId : {
         notEmpty: true,
         isInt: true,
-        errorMessage: "Invalid value for 'eventTypeId'"
+        errorMessage: "Valor inválido para 'eventTypeId'"
     }, 
     customerId : {
         notEmpty: true,
         isInt: true,
-        errorMessage: "Invalid value for 'customerId'"
+        errorMessage: "Valor inválido para 'customerId'"
     }, 
     establishmentId : {
         notEmpty: true,
         isInt: true,
-        errorMessage: "Invalid value for 'establishmentId'"
+        errorMessage: "Valor inválido para 'establishmentId'"
     }, 
     description : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'description'"
+        errorMessage: "Valor inválido para 'description'"
     },
     startDate : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'startDate'"
+        errorMessage: "Valor inválido para 'startDate'"
     },
     finishDate : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'finishDate'"
+        errorMessage: "Valor inválido para 'finishDate'"
     },
     inviteList : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'inviteList'"
+        errorMessage: "Valor inválido para 'inviteList'"
     }
 }
 
@@ -40,33 +40,33 @@ exports.updateEventSchema = {
     eventTypeId : {
         notEmpty: true,
         isInt: true,
-        errorMessage: "Invalid value for 'eventTypeId'"
+        errorMessage: "Valor inválido para 'eventTypeId'"
     }, 
     customerId : {
         notEmpty: true,
         isInt: true,
-        errorMessage: "Invalid value for 'customerId'"
+        errorMessage: "Valor inválido para 'customerId'"
     }, 
     establishmentId : {
         notEmpty: true,
         isInt: true,
-        errorMessage: "Invalid value for 'establishmentId'"
+        errorMessage: "Valor inválido para 'establishmentId'"
     }, 
     description : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'description'"
+        errorMessage: "Valor inválido para 'description'"
     },
     startDate : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'startDate'"
+        errorMessage: "Valor inválido para 'startDate'"
     },
     finishDate : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'finishDate'"
+        errorMessage: "Valor inválido para 'finishDate'"
     },
     inviteList : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'inviteList'"
+        errorMessage: "Valor inválido para 'inviteList'"
     }
 }
 

@@ -22,51 +22,51 @@ exports.getCustomerByCpfSchema = {
 exports.createCustomerSchema = {
     name : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'name'"
+        errorMessage: "Valor inválido para 'name'"
     },
     cpf : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'cpf'"
+        errorMessage: "Valor inválido para 'cpf'"
     }, 
     cep : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'cep'"
+        errorMessage: "Valor inválido para 'cep'"
     }, 
     street : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'street'"
+        errorMessage: "Valor inválido para 'street'"
     },
     streetNumber : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'streetNumber'"
+        errorMessage: "Valor inválido para 'streetNumber'"
     },
     streetComplement : {
         notEmpty: false,
-        errorMessage: "Invalid value for 'streetComplement'"
+        errorMessage: "Valor inválido para 'streetComplement'"
     },
     neighborhood : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'neighborhood'"
+        errorMessage: "Valor inválido para 'neighborhood'"
     },
     city : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'city'"
+        errorMessage: "Valor inválido para 'city'"
     },
     state : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'state'"
+        errorMessage: "Valor inválido para 'state'"
     },
     email : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'email'"
+        errorMessage: "Valor inválido para 'email'"
     },
     mobileNumber : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'mobileNumber'"
+        errorMessage: "Valor inválido para 'mobileNumber'"
     },
     phoneNumber : {
         notEmpty: false,
-        errorMessage: "Invalid value for 'phoneNumber'"
+        errorMessage: "Valor inválido para 'phoneNumber'"
     }
 }
 
@@ -77,50 +77,50 @@ exports.updateCustomerSchema = {
     },
     name : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'name'"
+        errorMessage: "Valor inválido para 'name'"
     },
     cpf : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'cpf'"
+        errorMessage: "Valor inválido para 'cpf'"
     }, 
     cep : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'cep'"
+        errorMessage: "Valor inválido para 'cep'"
     }, 
     street : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'street'"
+        errorMessage: "Valor inválido para 'street'"
     },
     streetNumber : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'streetNumber'"
+        errorMessage: "Valor inválido para 'streetNumber'"
     },
     streetComplement : {
         notEmpty: false,
-        errorMessage: "Invalid value for 'streetComplement'"
+        errorMessage: "Valor inválido para 'streetComplement'"
     },
     neighborhood : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'neighborhood'"
+        errorMessage: "Valor inválido para 'neighborhood'"
     },
     city : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'city'"
+        errorMessage: "Valor inválido para 'city'"
     },
     state : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'state'"
+        errorMessage: "Valor inválido para 'state'"
     },
     email : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'email'"
+        errorMessage: "Valor inválido para 'email'"
     },
     mobileNumber : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'mobileNumber'"
+        errorMessage: "Valor inválido para 'mobileNumber'"
     },
     phoneNumber : {
         notEmpty: false,
-        errorMessage: "Invalid value for 'phoneNumber'"
+        errorMessage: "Valor inválido para 'phoneNumber'"
     }
 }

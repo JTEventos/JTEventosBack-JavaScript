@@ -1,6 +1,5 @@
 const { response } = require("../app");
 const customerBusiness = require("../business/customer.business");
-const customerRepository = require("../repository/customer.repository");
 const { validationResult } = require("express-validator");
 
 exports.findAll = async(req, resp, next) => {
@@ -59,14 +58,8 @@ exports.updateCustomer = async (req, resp, next) => {
         validationResult(req).throw()
         const { id } = req.params;
         const { name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber } = req.body;
-        const customer = await customerRepository.findOne(id);
-
-        if (customer === 1) {
-            await customerBusiness.updateCustomer(id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
-            resp.sendStatus(204);
-        } else {
-            resp.sendStatus(404);
-        }
+        await customerBusiness.updateCustomer(id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
+        resp.sendStatus(204);
     } catch(e) {
         next(e);
     }
@@ -76,14 +69,8 @@ exports.deleteCustomer = async (req, resp, next) => {
     try {
         validationResult(req).throw()
         const { id } = req.params;
-        const customer = await customerRepository.findOne(id);
-
-        if (customer === 1) {
-            await customerBusiness.deleteCustomer(id);
-            resp.sendStatus(204);
-        } else {
-            resp.sendStatus(404);
-        }
+        await customerBusiness.deleteCustomer(id);
+        resp.sendStatus(204);
     } catch(e) {
         next(e);
     }

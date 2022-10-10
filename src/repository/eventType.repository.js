@@ -1,22 +1,10 @@
 const pool = require("../config/connection.database");
 const sqlErrorHandler = require("./utils/handle-sql-error");
 
-exports.findAll = async () => {
+exports.checkIfExists = async (id) => {
     const db = await pool.connect();
-    const query = `SELECT * FROM EVENTTYPE`;
     try {
-        return await db.query(query);
-    } catch(e) {
-        sqlErrorHandler(err);
-    } finally {
-        db.release();
-    }
-}
-
-exports.findOne = async (id) => {
-    const db = await pool.connect();
-    const query = `SELECT * FROM EVENTTYPE WHERE ID = $1`;
-    try {
+        const query = `SELECT * FROM EVENTTYPE WHERE ID = $1`;
         const result = await db.query(query, [id]);
         return result.rowCount;
     } catch(e) {
@@ -26,6 +14,17 @@ exports.findOne = async (id) => {
     }
 }
 
+exports.findAll = async () => {
+    const db = await pool.connect();
+    try {
+        const query = `SELECT * FROM EVENTTYPE`;
+        return await db.query(query);
+    } catch(e) {
+        sqlErrorHandler(err);
+    } finally {
+        db.release();
+    }
+}
 
 exports.createEventType = async (description) => {
     const db = await pool.connect();
@@ -46,13 +45,9 @@ exports.createEventType = async (description) => {
 exports.updateEventType = async (id, description) => {
     const db = await pool.connect();
     try {
-        db.query("BEGIN")
         const query = `UPDATE EVENTTYPE SET DESCRIPTION = $1 WHERE ID = $2`;
         await(db.query(query, [description, id]));
-        await db.query("COMMIT");
-        return result.rows;
     } catch(e) {
-        await db.query("ROLLBACK");
         sqlErrorHandler(e);
     } finally {
         db.release();
@@ -62,12 +57,9 @@ exports.updateEventType = async (id, description) => {
 exports.deleteEventType = async (id) => {
     const db = await pool.connect();
     try {
-        db.query("BEGIN")
         const query = "DELETE FROM EVENTTYPE WHERE ID = $1";
-        await(bd.query(query, [id]));
-        await db.query("COMMIT");
+        await(db.query(query, [id]));
     } catch(e) {
-        await db.query("ROLLBACK");
         sqlErrorHandler(e);
     } finally {
         db.release();

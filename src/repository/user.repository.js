@@ -1,22 +1,10 @@
 const pool = require("../config/connection.database");
 const sqlErrorHandler = require("./utils/handle-sql-error");
 
-exports.findAll = async () => {
+exports.checkIfExists = async (id) => {
     const db = await pool.connect();
-    const query = `SELECT * FROM USUARIOS`;
     try {
-        return await db.query(query);
-    } catch(e) {
-        sqlErrorHandler(err);
-    } finally {
-        db.release();
-    }
-}
-
-exports.findOne = async (id) => {
-    const db = await pool.connect();
-    const query = `SELECT * FROM USUARIOS WHERE ID = $1`;
-    try {
+        const query = `SELECT * FROM USUARIOS WHERE ID = $1`;
         const result = await db.query(query, [id]);
         return result.rowCount;
     } catch(e) {
@@ -26,10 +14,22 @@ exports.findOne = async (id) => {
     }
 }
 
+exports.findAll = async () => {
+    const db = await pool.connect();
+    try {
+        const query = `SELECT * FROM USUARIOS`;
+        return await db.query(query);
+    } catch(e) {
+        sqlErrorHandler(err);
+    } finally {
+        db.release();
+    }
+}
+
 exports.findById = async (id) => {
     const db = await pool.connect();
-    const query = `SELECT * FROM USUARIOS WHERE ID = $1`;
     try {
+        const query = `SELECT * FROM USUARIOS WHERE ID = $1`;
         return await db.query(query, [id]);
     } catch(e) {
         sqlErrorHandler(err);
@@ -57,11 +57,8 @@ exports.createUser = async (username, password) => {
 exports.updateUser = async (id, username, password) => {
     const db = await pool.connect();
     try {
-        db.query("BEGIN")
         const query = "UPDATE USERS SET NAME = $1, PASSWORD = $2 WHERE ID = $3";
         await(db.query(query, [username, password, id]));
-        await db.query("COMMIT");
-        return result.rows;
     } catch(e) {
         await db.query("ROLLBACK");
         sqlErrorHandler(e);

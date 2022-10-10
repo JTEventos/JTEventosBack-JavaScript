@@ -8,11 +8,11 @@ exports.getUserByIdSchema = {
 exports.createUserSchema = {
     username : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'username'"
+        errorMessage: "Valor inválido para 'username'"
     },
     password : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'password'"
+        errorMessage: "Valor inválido para 'password'"
     }
 }
 
@@ -23,10 +23,10 @@ exports.updateUserSchema = {
     },
     username : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'username'"
+        errorMessage: "Valor inválido para 'username'"
     },
     password : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'password'"
+        errorMessage: "Valor inválido para 'password'"
     }
 }

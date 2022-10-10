@@ -23,15 +23,21 @@ exports.findByCpf = async (cpf) => {
 }
 
 exports.createCustomer = async (name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber) => {
-    customerValidators.validateFields(name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
+    customerValidators.validateFields(name, cpf, cep, street, streetNumber, neighborhood, city, state, email, mobileNumber);
+    customerValidators.validateCpf(cpf);
     await customerRepository.createCustomer(name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
 }
 
 exports.updateCustomer = async (id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber) => {
-    customerValidators.validateStatusNotEmpty(name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
+    customerValidators.validateFields(name, cpf, cep, street, streetNumber, neighborhood, city, state, email, mobileNumber);
+    customerValidators.validateCpf(cpf);
+    const customer = await customerRepository.checkIfExists(id);
+    customerValidators.validateIfExists(customer);
     await customerRepository.updateCustomer(id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
 }
 
 exports.deleteCustomer = async (id) => {
+    const customer = await customerRepository.checkIfExists(id);
+    customerValidators.validateIfExists(customer);
     await customerRepository.deleteCustomer(id);
 }

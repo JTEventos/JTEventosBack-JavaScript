@@ -1,22 +1,10 @@
 const pool = require("../config/connection.database");
 const sqlErrorHandler = require("./utils/handle-sql-error");
 
-exports.findAll = async () => {
+exports.checkIfExists = async (id) => {
     const db = await pool.connect();
-    const query = `SELECT * FROM CUSTOMERS`;
     try {
-        return await db.query(query);
-    } catch(e) {
-        sqlErrorHandler(err);
-    } finally {
-        db.release();
-    }
-}
-
-exports.findOne = async (id) => {
-    const db = await pool.connect();
-    const query = `SELECT * FROM CUSTOMERS WHERE ID = $1`;
-    try {
+        const query = `SELECT * FROM CUSTOMERS WHERE ID = $1`;
         const result = await db.query(query, [id]);
         return result.rowCount;
     } catch(e) {
@@ -26,10 +14,22 @@ exports.findOne = async (id) => {
     }
 }
 
-exports.findById = async (id) => {
+exports.findAll = async () => {
     const db = await pool.connect();
-    const query = `SELECT * FROM CUSTOMERS WHERE ID = $1`;
     try {
+        const query = `SELECT * FROM CUSTOMERS`;
+        return await db.query(query);
+    } catch(e) {
+        sqlErrorHandler(err);
+    } finally {
+        db.release();
+    }
+}
+
+exports.findById = async (id) => {
+    const db = await pool.connect()
+    try {
+        const query = `SELECT * FROM CUSTOMERS WHERE ID = $1`;
         return await db.query(query, [id]);
     } catch(e) {
         sqlErrorHandler(err);
@@ -40,8 +40,8 @@ exports.findById = async (id) => {
 
 exports.findByName = async (name) => {
     const db = await pool.connect();
-    const query = `SELECT * FROM CUSTOMERS WHERE NAME LIKE "%$1%"`;
     try {
+        const query = `SELECT * FROM CUSTOMERS WHERE NAME LIKE "%$1%"`;
         return await db.query(query, [name]);
     } catch(e) {
         sqlErrorHandler(err);
@@ -52,8 +52,8 @@ exports.findByName = async (name) => {
 
 exports.findByCpf = async (cpf) => {
     const db = await pool.connect();
-    const query = `SELECT * FROM CUSTOMERS WHERE CPF =  "$1%"`;
     try {
+        const query = `SELECT * FROM CUSTOMERS WHERE CPF =  "$1%"`;
         return await db.query(query, [cpf]);
     } catch(e) {
         sqlErrorHandler(err);
@@ -83,16 +83,12 @@ exports.createCustomer = async (name, cpf, cep, street, streetNumber, streetComp
 exports.updateCustomer = async (id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber) => {
     const db = await pool.connect();
     try {
-        db.query("BEGIN")
         const query = `UPDATE CUSTOMERS ` +
                       `SET NAME = $1, CPF = $2, CEP = $3, STREET = $4, STREETNUMBER = $5, STREETCOMPLEMENT = $6, ` +
                       `NEIGHBORHOOD = $7, CITY = $8, STATE = $9, EMAIL = $10, MOBILENUMBER = $11, PHONENUMBER = $12 ` +
                       `WHERE ID = $13`;
         await(db.query(query, [name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber, id]));
-        await db.query("COMMIT");
-        return result.rows;
     } catch(e) {
-        await db.query("ROLLBACK");
         sqlErrorHandler(e);
     } finally {
         db.release();
@@ -102,12 +98,9 @@ exports.updateCustomer = async (id, name, cpf, cep, street, streetNumber, street
 exports.deleteCustomer = async (id) => {
     const db = await pool.connect();
     try {
-        db.query("BEGIN")
         const query = "DELETE FROM CUSTOMERS WHERE ID = $1";
         await(bd.query(query, [id]));
-        await db.query("COMMIT");
     } catch(e) {
-        await db.query("ROLLBACK");
         sqlErrorHandler(e);
     } finally {
         db.release();

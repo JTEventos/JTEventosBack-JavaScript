@@ -1,7 +1,7 @@
 exports.createEventTypeSchema = {
     description : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'description'"
+        errorMessage: "Valor inválido para 'description'"
     }
 }
 
@@ -12,7 +12,7 @@ exports.updateEventTypeSchema = {
     },
     description : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'description'"
+        errorMessage: "Valor inválido para 'description'"
     }
 }
 

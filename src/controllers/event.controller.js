@@ -1,6 +1,5 @@
 const { response } = require("../app");
 const eventBusiness = require("../business/event.business");
-const eventRepository = require("../repository/event.repository");
 const { validationResult } = require("express-validator");
 
 exports.findAll = async(req, resp, next) => {
@@ -29,14 +28,8 @@ exports.updateEvent = async (req, resp, next) => {
         validationResult(req).throw()
         const { id } = req.params;
         const { eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList } = req.body;
-        const event = await eventRepository.findOne(id);
-
-        if (event === 1) {
-            await eventBusiness.updateEvent(id, eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList);
-            resp.sendStatus(204);
-        } else {
-            resp.sendStatus(404);
-        }
+        await eventBusiness.updateEvent(id, eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList);
+        resp.sendStatus(204);
     } catch(e) {
         next(e);
     }
@@ -46,14 +39,8 @@ exports.deleteEvent = async (req, resp, next) => {
     try {
         validationResult(req).throw()
         const { id } = req.params;
-        const event = await eventRepository.findOne(id);
-
-        if (event === 1) {
-            await eventBusiness.deleteEvent(id);
-            resp.sendStatus(204);
-        } else {
-            resp.sendStatus(404);
-        }
+        await eventBusiness.deleteEvent(id);
+        resp.sendStatus(204);
     } catch(e) {
         next(e);
     }

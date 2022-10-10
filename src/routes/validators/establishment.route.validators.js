@@ -1,35 +1,35 @@
 exports.createEstablishmentSchema = {
     description : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'description'"
+        errorMessage: "Valor inválido para 'description'"
     }, 
     cep : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'cep'"
+        errorMessage: "Valor inválido para 'cep'"
     }, 
     street : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'street'"
+        errorMessage: "Valor inválido para 'street'"
     },
     streetNumber : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'streetNumber'"
+        errorMessage: "Valor inválido para 'streetNumber'"
     },
     streetComplement : {
         notEmpty: false,
-        errorMessage: "Invalid value for 'streetComplement'"
+        errorMessage: "Valor inválido para 'streetComplement'"
     },
     neighborhood : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'neighborhood'"
+        errorMessage: "Valor inválido para 'neighborhood'"
     },
     city : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'city'"
+        errorMessage: "Valor inválido para 'city'"
     },
     state : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'state'"
+        errorMessage: "Valor inválido para 'state'"
     }
 }
 
@@ -40,35 +40,35 @@ exports.updateEstablishmentSchema = {
     },
     description : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'description'"
+        errorMessage: "Valor inválido para 'description'"
     }, 
     cep : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'cep'"
+        errorMessage: "Valor inválido para 'cep'"
     }, 
     street : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'street'"
+        errorMessage: "Valor inválido para 'street'"
     },
     streetNumber : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'streetNumber'"
+        errorMessage: "Valor inválido para 'streetNumber'"
     },
     streetComplement : {
         notEmpty: false,
-        errorMessage: "Invalid value for 'streetComplement'"
+        errorMessage: "Valor inválido para 'streetComplement'"
     },
     neighborhood : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'neighborhood'"
+        errorMessage: "Valor inválido para 'neighborhood'"
     },
     city : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'city'"
+        errorMessage: "Valor inválido para 'city'"
     },
     state : {
         notEmpty: true,
-        errorMessage: "Invalid value for 'state'"
+        errorMessage: "Valor inválido para 'state'"
     }
 }
 

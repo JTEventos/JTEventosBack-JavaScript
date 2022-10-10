@@ -1,6 +1,13 @@
+const { paramMustNotBeNull, notFound } = require("./utils/return-message");
+
 exports.validateFields = (description) => {
     if (!description) {
-        const err = {status: 400, msg: "One of following params must not be null: description"};
-        throw err;
+        throw paramMustNotBeNull("description");
+    }
+}
+
+exports.validateIfExists = (eventType) => {
+    if (eventType !== 1) {
+        throw notFound("Tipo de Evento");
     }
 }

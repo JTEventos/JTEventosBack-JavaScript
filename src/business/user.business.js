@@ -18,6 +18,8 @@ exports.createUser = async (username, password) => {
 }
 
 exports.updateUser = async (id, username, password) => {
-    userValidators.validateStatusNotEmpty(username, password);
+    userValidators.validateFields(username, password);
+    const user = await userRepository.checkIfExists(id);
+    userValidators.validateIfExists(user)
     await userRepository.updateUser(id, username, password);
 }
