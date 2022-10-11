@@ -17,7 +17,7 @@ module.exports = mongoose.model(
 const schemasJtEventos = require("./config/schemas.database");
 
 */
-const { mongoose } = require('mongoose');
+//const mongoose = require('mongoose');
 const mongo = require("../config/connection.database");
 
 
@@ -27,14 +27,31 @@ exports.schemasJtEventos = async () => {
     try {
         await mongo.connectDb();
 
-        const eventType = new mongoose.Schema({
-            id: Number,
-            description: String
+        /*const eventType = new mongoose.Schema({
+            Id: Number,
+            Description: String
         })
 
-        module.exports = mongoose.model('eventType', eventType, 'jt-eventos');
+        module.exports = mongoose.model('Test1', eventType, 'Test2');
+*/
 
-        mongo.disconnectDb();
+        var mongoose=require('mongoose');
+        
+    console.log("2");
+        var StudentSchema = new mongoose.Schema({
+            StudentId:Number,
+            Name:String,
+            Roll:Number,
+            Birthday:Date,
+            Address:String
+        });
+        
+    console.log("3");
+        module.exports = mongoose.model(
+            'student', StudentSchema, 'Students');
+
+
+        //mongo.disconnectDb();
     } catch(e) {
         console.log(e);
     }

@@ -1,5 +1,6 @@
 const mongo = require("../config/connection.database");
 const sqlErrorHandler = require("./utils/handle-sql-error");
+const schemas = require("../config/schemas.database");
 
 exports.checkIfExists = async (id) => {
     const db = await pool.connect();
@@ -15,14 +16,16 @@ exports.checkIfExists = async (id) => {
 }
 
 exports.findAll = async () => {
-    const db = await mongo.connectDb();
+    //const db = await mongo.connectDb();
+    schemas.schemasJtEventos();
+
     // try {
     //     const query = `SELECT * FROM EVENTTYPE`;
     //     return await db.query(query);
     // } catch(e) {
     //     sqlErrorHandler(e);
     // } finally {
-        mongo.disconnectDb();
+        //mongo.disconnectDb();
     // }
 }
 
