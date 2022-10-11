@@ -1,109 +1,31 @@
-class Customer {
-    _id;
-    _name;
-    _cpf;
-    _cep;
-    _street;
-    _streetNumber;
-    _streetComplement;
-    _neighborhood;
-    _city;
-    _state;
-    _email;
-    _mobileNumber;
-    _phoneNumber;
-    
-    get id() {
-        return this._id;
-    }
-    set id(value) {
-        this._id = value;
-    }
-    
-    get name() {
-        return this._name;
-    }
-    set name(value) {
-        this._name = value;
-    }
-    
-    get cpf() {
-        return this._cpf;
-    }
-    set cpf(value) {
-        this._cpf = value;
-    }
-    
-    get cep() {
-        return this._cep;
-    }
-    set cep(value) {
-        this._cep = value;
-    }
-    
-    get street() {
-        return this._street;
-    }
-    set street(value) {
-        this._street = value;
-    }
-    
-    get streetNumber() {
-        return this._streetNumber;
-    }
-    set streetNumber(value) {
-        this._streetNumber = value;
-    }
-    
-    get streetComplement() {
-        return this._streetComplement;
-    }
-    set streetComplement(value) {
-        this._streetComplement = value;
-    }
-    
-    get neighborhood() {
-        return this._neighborhood;
-    }
-    set neighborhood(value) {
-        this._neighborhood = value;
-    }
-    
-    get city() {
-        return this._city;
-    }
-    set city(value) {
-        this._city = value;
-    }
-    
-    get state() {
-        return this._state;
-    }
-    set state(value) {
-        this._state = value;
-    }
-    
-    get email() {
-        return this._email;
-    }
-    set email(value) {
-        this._email = value;
-    }
+const mongoose = require("mongoose");
+const autoIncrementModelID = require('../models/counter.model');
 
-    get mobileNumber() {
-        return this._mobileNumber;
-    }
-    set mobileNumber(value) {
-        this._mobileNumber = value;
-    }
+const CustomerSchema = new mongoose.Schema({
+    _id: {type: Number, required: false, trim: true},
+    name: {type: String, required: true, trim: true},
+    cpf: {type: String, required: true, trim: true},
+    cep: {type: String, required: true, trim: true},
+    street: {type: String, required: true, trim: true},
+    streetNumber: {type: String, required: true, trim: true},
+    streetComplement: {type: String, required: false, trim: true},
+    neighborhood: {type: String, required: true, trim: true},
+    city: {type: String, required: true, trim: true},
+    state: {type: String, required: true, trim: true},
+    email: {type: String, required: true, trim: true},
+    mobileNumber: {type: String, required: true, trim: true},
+    phoneNumber: {type: String, required: false, trim: true}
+})
 
-    get phoneNumber() {
-        return this._phoneNumber;
+CustomerSchema.pre('save', function (next) {
+    if (!this.isNew) {
+        next();
+        return;
     }
-    set phoneNumber(value) {
-        this._phoneNumber = value;
-    }
+  
+    autoIncrementModelID('Customers', this, next);
+});
 
+const Customer = mongoose.model("Customer", CustomerSchema);
 
-
-}
+module.exports = Customer;

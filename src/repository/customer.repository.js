@@ -1,108 +1,99 @@
-const pool = require("../config/connection.database");
 const sqlErrorHandler = require("./utils/handle-sql-error");
+const CustomerModel = require("../models/customer.model");
 
 exports.checkIfExists = async (id) => {
-    const db = await pool.connect();
     try {
-        const query = `SELECT * FROM CUSTOMERS WHERE ID = $1`;
-        const result = await db.query(query, [id]);
-        return result.rowCount;
-    } catch(e) {
-        sqlErrorHandler(err);
-    } finally {
-        db.release();
+        const customer = await CustomerModel.findOne(id);
+        return customer;
+    } catch (e) {
+        sqlErrorHandler(e);
     }
 }
 
 exports.findAll = async () => {
-    const db = await pool.connect();
     try {
-        const query = `SELECT * FROM CUSTOMERS`;
-        return await db.query(query);
-    } catch(e) {
-        sqlErrorHandler(err);
-    } finally {
-        db.release();
+        const customers = await CustomerModel.find();
+        return customers;
+    } catch (e) {
+        sqlErrorHandler(e);
     }
 }
 
 exports.findById = async (id) => {
-    const db = await pool.connect()
     try {
-        const query = `SELECT * FROM CUSTOMERS WHERE ID = $1`;
-        return await db.query(query, [id]);
-    } catch(e) {
-        sqlErrorHandler(err);
-    } finally {
-        db.release();
+        const customer = await CustomerModel.findById(id);
+        return customer;
+    } catch (e) {
+        sqlErrorHandler(e);
     }
 }
 
 exports.findByName = async (name) => {
-    const db = await pool.connect();
     try {
-        const query = `SELECT * FROM CUSTOMERS WHERE NAME LIKE "%$1%"`;
-        return await db.query(query, [name]);
-    } catch(e) {
-        sqlErrorHandler(err);
-    } finally {
-        db.release();
+        const customer = await CustomerModel.find(name);
+        return customer;
+    } catch (e) {
+        sqlErrorHandler(e);
     }
 }
 
 exports.findByCpf = async (cpf) => {
-    const db = await pool.connect();
     try {
-        const query = `SELECT * FROM CUSTOMERS WHERE CPF =  "$1%"`;
-        return await db.query(query, [cpf]);
-    } catch(e) {
-        sqlErrorHandler(err);
-    } finally {
-        db.release();
+        const customer = await CustomerModel.find(cpf);
+        return customer;
+    } catch (e) {
+        sqlErrorHandler(e);
     }
 }
 
 exports.createCustomer = async (name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber) => {
-    const db = await pool.connect();
     try {
-        db.query("BEGIN")
-        const query = `INSERT INTO CUSTOMERS (NAME, CPF, CEP, STREET, STREETNUMBER, STREETCOMPLEMENT, ` +
-                      `NEIGHBORHOOD, CITY, STATE, EMAIL, MOBILENUMBER, PHONENUMBER) ` +
-                      `VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
-        const result = await db.query(query, [name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber]);
-        await db.query("COMMIT");
-        return result.rows;
+        const customer = await CustomerModel({
+            name: name,
+            cpf: cpf,
+            cep: cep,
+            street: street,
+            streetNumber: streetNumber,
+            streetComplement: streetComplement,
+            neighborhood: neighborhood,
+            city: city,
+            state: state,
+            email: email,
+            mobileNumber: mobileNumber,
+            phoneNumber: phoneNumber
+        })
+        await customer.save();
     } catch (e) {
-        await db.query("ROLLBACK");
         sqlErrorHandler(e);
-    } finally {
-        db.release();
     }
 }
 
 exports.updateCustomer = async (id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber) => {
-    const db = await pool.connect();
     try {
-        const query = `UPDATE CUSTOMERS ` +
-                      `SET NAME = $1, CPF = $2, CEP = $3, STREET = $4, STREETNUMBER = $5, STREETCOMPLEMENT = $6, ` +
-                      `NEIGHBORHOOD = $7, CITY = $8, STATE = $9, EMAIL = $10, MOBILENUMBER = $11, PHONENUMBER = $12 ` +
-                      `WHERE ID = $13`;
-        await(db.query(query, [name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber, id]));
-    } catch(e) {
+        const customer = await CustomerModel.findByIdAndUpdate(id, {
+            name: name,
+            cpf: cpf,
+            cep: cep,
+            street: street,
+            streetNumber: streetNumber,
+            streetComplement: streetComplement,
+            neighborhood: neighborhood,
+            city: city,
+            state: state,
+            email: email,
+            mobileNumber: mobileNumber,
+            phoneNumber: phoneNumber
+        })
+        await customer.save();
+    } catch (e) {
         sqlErrorHandler(e);
-    } finally {
-        db.release();
     }
 }
 
 exports.deleteCustomer = async (id) => {
-    const db = await pool.connect();
     try {
-        const query = "DELETE FROM CUSTOMERS WHERE ID = $1";
-        await(bd.query(query, [id]));
-    } catch(e) {
+        await CustomerModel.findByIdAndDelete(id);
+    } catch (e) {
         sqlErrorHandler(e);
-    } finally {
-        db.release();
     }
 }

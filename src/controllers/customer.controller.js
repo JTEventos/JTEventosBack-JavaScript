@@ -7,8 +7,8 @@ exports.findAll = async(req, resp, next) => {
         validationResult(req).throw()
         const result = await customerBusiness.findAll();
         resp.json(result);
-    } catch (error) {
-        next(error);
+    } catch (e) {
+        next(e);
     }
 }
 
@@ -17,8 +17,8 @@ exports.findById = async(req, resp, next) => {
         validationResult(req).throw()
         const result = await customerBusiness.findById(req.query.id);
         resp.json(result);
-    } catch (error) {
-        next(error);
+    } catch (e) {
+        next(e);
     }
 }
 
@@ -27,8 +27,8 @@ exports.findByName = async(req, resp, next) => {
         validationResult(req).throw()
         const result = await customerBusiness.findByName(req.query.name);
         resp.json(result);
-    } catch (error) {
-        next(error);
+    } catch (e) {
+        next(e);
     }
 }
 
@@ -37,8 +37,8 @@ exports.findByCpf = async(req, resp, next) => {
         validationResult(req).throw()
         const result = await customerBusiness.findById(req.query.cpf);
         resp.json(result);
-    } catch (error) {
-        next(error);
+    } catch (e) {
+        next(e);
     }
 }
 
@@ -48,7 +48,7 @@ exports.createCustomer = async (req, resp, next) => {
         const { name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber } = req.body;
         await customerBusiness.createCustomer(name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
         resp.sendStatus(201);
-    } catch(e) {
+    } catch (e) {
         next(e);
     }
 }
@@ -60,7 +60,7 @@ exports.updateCustomer = async (req, resp, next) => {
         const { name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber } = req.body;
         await customerBusiness.updateCustomer(id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
         resp.sendStatus(204);
-    } catch(e) {
+    } catch (e) {
         next(e);
     }
 }
@@ -71,7 +71,7 @@ exports.deleteCustomer = async (req, resp, next) => {
         const { id } = req.params;
         await customerBusiness.deleteCustomer(id);
         resp.sendStatus(204);
-    } catch(e) {
+    } catch (e) {
         next(e);
     }
 }

@@ -8,12 +8,12 @@ const EventTypeSchema = new mongoose.Schema({
 
 EventTypeSchema.pre('save', function (next) {
     if (!this.isNew) {
-      next();
-      return;
+        next();
+        return;
     }
   
     autoIncrementModelID('EventTypes', this, next);
-  });
+});
 
 const EventType = mongoose.model("EventType", EventTypeSchema);
 

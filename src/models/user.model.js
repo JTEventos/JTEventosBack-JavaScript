@@ -1,26 +1,21 @@
-class User {
-    _id;
-    _name;
-    _email;
-    
-    get id() {
-        return this._id;
-    }
-    set id(value) {
-        this._id = value;
-    }
+const mongoose = require("mongoose");
+const autoIncrementModelID = require('../models/counter.model');
 
-    get name() {
-        return this._name;
+const UserSchema = new mongoose.Schema({
+    _id: {type: Number, required: false, trim: true},
+    username: {type: String, required: true, trim: true},
+    password: {type: String, required: true, trim: true},
+})
+
+UserSchema.pre('save', function (next) {
+    if (!this.isNew) {
+        next();
+        return;
     }
-    set name(value) {
-        this._name = value;
-    }
-    
-    get email() {
-        return this._email;
-    }
-    set email(value) {
-        this._email = value;
-    }
-}
+  
+    autoIncrementModelID('Users', this, next);
+});
+
+const User = mongoose.model("User", UserSchema);
+
+module.exports = User;

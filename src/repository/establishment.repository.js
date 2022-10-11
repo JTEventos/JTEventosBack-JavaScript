@@ -1,71 +1,64 @@
-const pool = require("../config/connection.database");
 const sqlErrorHandler = require("./utils/handle-sql-error");
+const EstablishmentModel = require("../models/establishment.model")
 
 exports.checkIfExists = async (id) => {
-    const db = await pool.connect();
     try {
-        const query = `SELECT * FROM ESTABLISHMENT WHERE ID = $1`;
-        const result = await db.query(query, [id]);
-        return result.rowCount;
-    } catch(e) {
-        sqlErrorHandler(err);
-    } finally {
-        db.release();
+        const establishment = await EstablishmentModel.findOne(id);
+        return establishment;
+    } catch (e) {
+        sqlErrorHandler(e);
     }
 }
 
 exports.findAll = async () => {
-    const db = await pool.connect();
     try {
-        const query = `SELECT * FROM ESTABLISHMENT`;
-        return await db.query(query);
-    } catch(e) {
-        sqlErrorHandler(err);
-    } finally {
-        db.release();
-    }
-}
-
-exports.createEstablishment = async (name, cep, street, streetNumber, streetComplement, neighborhood, city, state) => {
-    const db = await pool.connect();
-    try {
-        db.query("BEGIN")
-        const query = `INSERT INTO ESTABLISHMENT (NAME, CEP, STREET, STREETNUMBER, STREETCOMPLEMENT, NEIGHBORHOOD, CITY, STATE) ` +
-                      `VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
-        const result = await db.query(query, [name, cep, street, streetNumber, streetComplement, neighborhood, city, state]);
-        await db.query("COMMIT");
-        return result.rows;
+        const establishments = await EstablishmentModel.find();
+        return establishments;
     } catch (e) {
-        await db.query("ROLLBACK");
         sqlErrorHandler(e);
-    } finally {
-        db.release();
     }
 }
 
-exports.updateEstablishment = async (id, name, cep, street, streetNumber, streetComplement, neighborhood, city, state) => {
-    const db = await pool.connect();
+exports.createEstablishment = async (description, cep, street, streetNumber, streetComplement, neighborhood, city, state) => {
     try {
-        const query = `UPDATE ESTABLISHMENT ` +
-                      `SET NAME = $1, CEP = $2, STREET = $3, STREETNUMBER = $4, STREETCOMPLEMENT = $5, ` +
-                      `NEIGHBORHOOD = $6, CITY = $7, STATE = $8 ` +
-                      `WHERE ID = $9`;
-        await(db.query(query, [name, cep, street, streetNumber, streetComplement, neighborhood, city, state, id]));
-    } catch(e) {
+        const establishment = EstablishmentModel({
+            description: description,
+            cep: cep,
+            street: street,
+            streetNumber: streetNumber,
+            streetComplement: streetComplement,
+            neighborhood: neighborhood,
+            city: city,
+            state: state
+        })
+        await establishment.save();
+    } catch (e) {
         sqlErrorHandler(e);
-    } finally {
-        db.release();
+    }
+}
+
+exports.updateEstablishment = async (id, description, cep, street, streetNumber, streetComplement, neighborhood, city, state) => {
+    try {
+        const establishment = EstablishmentModel.findByIdAndUpdate(id, {
+            description: description,
+            cep: cep,
+            street: street,
+            streetNumber: streetNumber,
+            streetComplement: streetComplement,
+            neighborhood: neighborhood,
+            city: city,
+            state: state
+        })
+        await establishment.save();
+    } catch (e) {
+        sqlErrorHandler(e);
     }
 }
 
 exports.deleteEstablishment = async (id) => {
-    const db = await pool.connect();
     try {
-        const query = "DELETE FROM ESTABLISHMENT WHERE ID = $1";
-        await(db.query(query, [id]));
-    } catch(e) {
+        await EstablishmentModel.findByIdAndDelete(id);
+    } catch (e) {
         sqlErrorHandler(e);
-    } finally {
-        db.release();
     }
 }

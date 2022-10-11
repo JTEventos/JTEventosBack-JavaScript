@@ -1,15 +1,11 @@
-const pool = require("../config/connection.database");
 const sqlErrorHandler = require("./utils/handle-sql-error");
+const UserModel = require("../models/user.model")
 
 exports.checkIfExists = async (username, password) => {
-    const db = await pool.connect();
     try {
-        const query = `SELECT * FROM USUARIOS WHERE USERNAME = $1 AND PASSWORD = $2`;
-        const result = await db.query(query, [username, password]);
-        return result.rowCount;
-    } catch(e) {
-        sqlErrorHandler(err);
-    } finally {
-        db.release();
+        const user = await UserModel.findOne({ username: username, password: password })
+        return user;
+    } catch (e) {
+        sqlErrorHandler(e);
     }
 }
