@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const errorHandler = require("errorhandler");
 const helmet = require("helmet");
+const db = require("./config/connection.database")
 
 const authenticationRoute = require("./routes/authentication.routes");
 const userRoute = require("./routes/user.routes");
