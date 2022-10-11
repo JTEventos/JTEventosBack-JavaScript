@@ -7,6 +7,8 @@ try {
     function (error) {
       if (error) {
         console.log("MongoDB Error! " + error);
+      } else {
+        console.log("Conectado do mongoDB")
       }
     }
   );

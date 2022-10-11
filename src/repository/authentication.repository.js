@@ -1,4 +1,4 @@
-const sqlErrorHandler = require("./utils/handle-sql-error");
+const mongoErrorHandler = require("./utils/handle-mongo-error");
 const UserModel = require("../models/user.model")
 
 exports.checkIfExists = async (username, password) => {
@@ -6,6 +6,6 @@ exports.checkIfExists = async (username, password) => {
         const user = await UserModel.findOne({ username: username, password: password })
         return user;
     } catch (e) {
-        sqlErrorHandler(e);
+        mongoErrorHandler(e);
     }
 }

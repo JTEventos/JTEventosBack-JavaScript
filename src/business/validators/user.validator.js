@@ -7,7 +7,7 @@ exports.validateFields = (username, password) => {
 }
 
 exports.validateIfExists = (user) => {
-    if (user !== 1) {
+    if (!user) {
         throw notFound("Usuário");
     }
 }

@@ -1,13 +1,13 @@
 const { paramMustNotBeNull, notFound } = require("./utils/return-message");
 
-exports.validateFields = (name, cep, street, streetNumber, neighborhood, city, state) => {
-    if (!name && !cep && !street && !streetNumber && !neighborhood && !city && !state) {
-        throw paramMustNotBeNull("name, cep, street, streetNumber, neighborhood, city, state");
+exports.validateFields = (description, cep, street, streetNumber, neighborhood, city, state) => {
+    if (!description && !cep && !street && !streetNumber && !neighborhood && !city && !state) {
+        throw paramMustNotBeNull("description, cep, street, streetNumber, neighborhood, city, state");
     }
 }
 
 exports.validateIfExists = (establishment) => {
-    if (establishment !== 1) {
+    if (!establishment) {
         throw notFound("Estabelecimento");
     }
 }

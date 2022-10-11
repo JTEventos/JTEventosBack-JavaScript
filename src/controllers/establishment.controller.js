@@ -15,8 +15,8 @@ exports.findAll = async(req, resp, next) => {
 exports.createEstablishment = async (req, resp, next) => {
     try {
         validationResult(req).throw()
-        const { name, cep, street, streetNumber, streetComplement, neighborhood, city, state } = req.body;
-        await establishmentBusiness.createEstablishment(name, cep, street, streetNumber, streetComplement, neighborhood, city, state);
+        const { description, cep, street, streetNumber, streetComplement, neighborhood, city, state } = req.body;
+        await establishmentBusiness.createEstablishment(description, cep, street, streetNumber, streetComplement, neighborhood, city, state);
         resp.sendStatus(201);
     } catch(e) {
         next(e);
@@ -27,8 +27,8 @@ exports.updateEstablishment = async (req, resp, next) => {
     try {
         validationResult(req).throw()
         const { id } = req.params;
-        const { name, cep, street, streetNumber, streetComplement, neighborhood, city, state } = req.body;
-        await establishmentBusiness.updateEstablishment(id, name, cep, street, streetNumber, streetComplement, neighborhood, city, state);
+        const { description, cep, street, streetNumber, streetComplement, neighborhood, city, state } = req.body;
+        await establishmentBusiness.updateEstablishment(id, description, cep, street, streetNumber, streetComplement, neighborhood, city, state);
         resp.sendStatus(204);
     } catch(e) {
         next(e);

@@ -1,4 +1,4 @@
-const { paramMustNotBeNull, notFound } = require("./utils/return-message");
+const { paramMustNotBeNull, notFound, notValid } = require("./utils/return-message");
 
 exports.validateFields = (name, cpf, cep, street, streetNumber, neighborhood, city, state, email, mobileNumber) => {
     if (!name && !cpf && !cep && !street && !streetNumber && !neighborhood && !city && !state && !email && !mobileNumber) {
@@ -7,7 +7,7 @@ exports.validateFields = (name, cpf, cep, street, streetNumber, neighborhood, ci
 }
 
 exports.validateIfExists = (customer) => {
-    if (customer !== 1) {
+    if (!customer) {
         throw notFound("Cliente");
     }
 }
@@ -15,7 +15,7 @@ exports.validateIfExists = (customer) => {
 exports.validateCpf = (cpf) => {
     try {
         cpf = cpf.replace(/[^\d]+/g, "");
-        if (cpf == "") return false;
+        if (cpf == "") throw notValid("CPF");
         // Elimina CPFs invalidos conhecidos
         if (cpf.length != 11 || (
             cpf == "00000000000" ||
@@ -28,7 +28,7 @@ exports.validateCpf = (cpf) => {
             cpf == "77777777777" ||
             cpf == "88888888888" ||
             cpf == "99999999999"
-          )) return false;
+          )) throw notValid("CPF");
     
         // Valida 1º digito
         let add = 0;
@@ -36,7 +36,7 @@ exports.validateCpf = (cpf) => {
     
         let rev = 11 - (add % 11);
         if (rev == 10 || rev == 11) rev = 0;
-        if (rev != parseInt(cpf.charAt(9))) return false;
+        if (rev != parseInt(cpf.charAt(9))) throw notValid("CPF");
     
         // Valida 2º digito
         add = 0;
@@ -44,10 +44,10 @@ exports.validateCpf = (cpf) => {
     
         rev = 11 - (add % 11);
         if (rev == 10 || rev == 11) rev = 0;
-        if (rev != parseInt(cpf.charAt(10))) return false;
-    
+        if (rev != parseInt(cpf.charAt(10))) throw notValid("CPF");
+        
         return true;
     } catch (e) {
-        console.trace(e);
+        throw e;
     }
 }

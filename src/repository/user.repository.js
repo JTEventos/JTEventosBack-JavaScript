@@ -1,12 +1,12 @@
-const sqlErrorHandler = require("./utils/handle-sql-error");
+const mongoErrorHandler = require("./utils/handle-mongo-error");
 const UserModel = require("../models/user.model");
 
 exports.checkIfExists = async (id) => {
     try {
-        const user = await UserModel.findOne(id);
+        const user = await UserModel.findById(id);
         return user;
     } catch (e) {
-        sqlErrorHandler(e);
+        mongoErrorHandler(e);
     }
 }
 
@@ -15,7 +15,7 @@ exports.findAll = async () => {
         const user = await UserModel.find();
         return user;
     } catch (e) {
-        sqlErrorHandler(e);
+        mongoErrorHandler(e);
     }
 }
 
@@ -24,7 +24,7 @@ exports.findById = async (id) => {
         const user = await UserModel.findById(id);
         return user;
     } catch (e) {
-        sqlErrorHandler(e);
+        mongoErrorHandler(e);
     }
 }
 
@@ -36,7 +36,7 @@ exports.createUser = async (username, password) => {
         })
         user.save();
     } catch (e) {
-        sqlErrorHandler(e);
+        mongoErrorHandler(e);
     }
 }
 
@@ -48,6 +48,6 @@ exports.updateUser = async (id, username, password) => {
         })
         user.save();
     } catch(e) {
-        sqlErrorHandler(e);
+        mongoErrorHandler(e);
     }
 }

@@ -6,6 +6,10 @@ exports.notFound = (param) => {
     return { status: 404, msg: `${param} não encontrado` };
 }
 
+exports.notValid = (param) => {
+    return { status: 404, msg: `${param} inválido` };
+}
+
 exports.userNotFound = () => {
     return { status: 401, msg: "Usuário ou senha inválidos" };
 }

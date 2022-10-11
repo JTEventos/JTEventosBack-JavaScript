@@ -1,12 +1,12 @@
-const sqlErrorHandler = require("./utils/handle-sql-error");
+const mongoErrorHandler = require("./utils/handle-mongo-error");
 const EstablishmentModel = require("../models/establishment.model")
 
 exports.checkIfExists = async (id) => {
     try {
-        const establishment = await EstablishmentModel.findOne(id);
+        const establishment = await EstablishmentModel.findById(id);
         return establishment;
     } catch (e) {
-        sqlErrorHandler(e);
+        mongoErrorHandler(e);
     }
 }
 
@@ -15,13 +15,13 @@ exports.findAll = async () => {
         const establishments = await EstablishmentModel.find();
         return establishments;
     } catch (e) {
-        sqlErrorHandler(e);
+        mongoErrorHandler(e);
     }
 }
 
 exports.createEstablishment = async (description, cep, street, streetNumber, streetComplement, neighborhood, city, state) => {
     try {
-        const establishment = EstablishmentModel({
+        const establishment = await EstablishmentModel({
             description: description,
             cep: cep,
             street: street,
@@ -33,13 +33,13 @@ exports.createEstablishment = async (description, cep, street, streetNumber, str
         })
         await establishment.save();
     } catch (e) {
-        sqlErrorHandler(e);
+        mongoErrorHandler(e);
     }
 }
 
 exports.updateEstablishment = async (id, description, cep, street, streetNumber, streetComplement, neighborhood, city, state) => {
     try {
-        const establishment = EstablishmentModel.findByIdAndUpdate(id, {
+        const establishment = await EstablishmentModel.findByIdAndUpdate(id, {
             description: description,
             cep: cep,
             street: street,
@@ -48,10 +48,10 @@ exports.updateEstablishment = async (id, description, cep, street, streetNumber,
             neighborhood: neighborhood,
             city: city,
             state: state
-        })
+        });
         await establishment.save();
     } catch (e) {
-        sqlErrorHandler(e);
+        mongoErrorHandler(e);
     }
 }
 
@@ -59,6 +59,6 @@ exports.deleteEstablishment = async (id) => {
     try {
         await EstablishmentModel.findByIdAndDelete(id);
     } catch (e) {
-        sqlErrorHandler(e);
+        mongoErrorHandler(e);
     }
 }

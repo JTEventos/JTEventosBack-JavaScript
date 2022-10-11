@@ -7,7 +7,7 @@ exports.validateFields = (eventTypeId, customerId, establishmentId, description,
 }
 
 exports.validateIfExists = (event) => {
-    if (event !== 1) {
+    if (!event) {
         throw notFound("Evento");
     }
 }

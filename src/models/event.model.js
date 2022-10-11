@@ -1,66 +1,26 @@
-class Event {
-    _id;
-    _eventTypeId;
-    _customerId;
-    _establishmentId;
-    _description;
-    _startDate;
-    _finishDate;
-    _inviteList;
-    
-    get id() {
-        return this._id;
+const mongoose = require("mongoose");
+const autoIncrementModelID = require('../models/counter.model');
+
+const EventSchema = new mongoose.Schema({
+    _id: {type: Number, required: false, trim: true},
+    eventTypeId: {type: Number, required: true, trim: true},
+    customerId: {type: Number, required: true, trim: true},
+    establishmentId: {type: Number, required: true, trim: true},
+    description: {type: String, required: true, trim: true},
+    startDate: {type: String, required: true, trim: true},
+    finishDate: {type: String, required: true, trim: true},
+    inviteList: {type: String, required: true, trim: true}
+})
+
+EventSchema.pre('save', function (next) {
+    if (!this.isNew) {
+        next();
+        return;
     }
-    set id(value) {
-        this._id = value;
-    }
-    
-    get eventTypeId() {
-        return this._eventTypeId;
-    }
-    set eventTypeId(value) {
-        this._eventTypeId = value;
-    }
-    
-    get customerId() {
-        return this._customerId;
-    }
-    set customerId(value) {
-        this._customerId = value;
-    }
-    
-    get establishmentId() {
-        return this._establishmentId;
-    }
-    set establishmentId(value) {
-        this._establishmentId = value;
-    }
-    
-    get description() {
-        return this._description;
-    }
-    set description(value) {
-        this._description = value;
-    }
-    
-    get startDate() {
-        return this._startDate;
-    }
-    set startDate(value) {
-        this._startDate = value;
-    }
-    
-    get finishDate() {
-        return this._finishDate;
-    }
-    set finishDate(value) {
-        this._finishDate = value;
-    }
-    
-    get inviteList() {
-        return this._inviteList;
-    }
-    set inviteList(value) {
-        this._inviteList = value;
-    }
-}
+  
+    autoIncrementModelID('Events', this, next);
+});
+
+const Event = mongoose.model("Event", EventSchema);
+
+module.exports = Event;
