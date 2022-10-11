@@ -1,70 +1,50 @@
 const mongo = require("../config/connection.database");
 const sqlErrorHandler = require("./utils/handle-sql-error");
-const schemas = require("../config/schemas.database");
+const db = require("../config/connection.database");
+const EventTypeModel = require("../models/eventType.model");
 
 exports.checkIfExists = async (id) => {
-    const db = await pool.connect();
     try {
-        const query = `SELECT * FROM EVENTTYPE WHERE ID = $1`;
-        const result = await db.query(query, [id]);
-        return result.rowCount;
-    } catch(e) {
-        sqlErrorHandler(err);
-    } finally {
-        db.release();
+        const eventType = await EventTypeModel.findById(id);
+        return eventType;
+    } catch (error) {
+        throw error;
     }
 }
 
-exports.findAll = async () => {
-    //const db = await mongo.connectDb();
-    schemas.schemasJtEventos();
-
-    // try {
-    //     const query = `SELECT * FROM EVENTTYPE`;
-    //     return await db.query(query);
-    // } catch(e) {
-    //     sqlErrorHandler(e);
-    // } finally {
-        //mongo.disconnectDb();
-    // }
+exports.findAll = async (res) => {
+    try {
+        const eventTypes = await EventTypeModel.find({});
+        return eventTypes;
+    } catch (error) {
+        throw error;
+    }
 }
 
 exports.createEventType = async (description) => {
-    const db = await pool.connect();
     try {
-        db.query("BEGIN")
-        const query = `INSERT INTO EVENTTYPE (DESCRIPTION) VALUES ($1)`;
-        const result = await db.query(query, [description]);
-        await db.query("COMMIT");
-        return result.rows;
-    } catch (e) {
-        await db.query("ROLLBACK");
-        sqlErrorHandler(e);
-    } finally {
-        db.release();
+        const eventType = new EventTypeModel(description); //caso tenha mais de um {name: name, description: description}
+        await eventType.save();
+    } catch (error) {
+        throw error;
     }
 }
 
+
 exports.updateEventType = async (id, description) => {
-    const db = await pool.connect();
     try {
-        const query = `UPDATE EVENTTYPE SET DESCRIPTION = $1 WHERE ID = $2`;
-        await(db.query(query, [description, id]));
-    } catch(e) {
-        sqlErrorHandler(e);
-    } finally {
-        db.release();
+        const eventType = await EventTypeModel.findByIdAndUpdate(id, {description: description});
+        await eventType.save();
+        return eventType;
+    } catch (error) {
+        throw error;
     }
 }
 
 exports.deleteEventType = async (id) => {
-    const db = await pool.connect();
     try {
-        const query = "DELETE FROM EVENTTYPE WHERE ID = $1";
-        await(db.query(query, [id]));
-    } catch(e) {
-        sqlErrorHandler(e);
-    } finally {
-        db.release();
+        const eventType = await EventTypeModel.findByIdAndDelete(id);
+    } catch (error) {
+        throw error;
     }
 }

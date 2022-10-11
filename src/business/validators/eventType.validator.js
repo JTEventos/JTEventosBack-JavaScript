@@ -7,7 +7,7 @@ exports.validateFields = (description) => {
 }
 
 exports.validateIfExists = (eventType) => {
-    if (eventType !== 1) {
+    if (!eventType) {
         throw notFound("Tipo de Evento");
     }
 }

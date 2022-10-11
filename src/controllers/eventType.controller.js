@@ -14,9 +14,8 @@ exports.findAll = async(req, resp, next) => {
 
 exports.createEventType = async (req, resp, next) => {
     try {
-        validationResult(req).throw()
-        const { description } = req.body;
-        await eventTypeBusiness.createEventType(description);
+        validationResult(req).throw()   
+        await eventTypeBusiness.createEventType(req.body);
         resp.sendStatus(201);
     } catch(e) {
         next(e);
