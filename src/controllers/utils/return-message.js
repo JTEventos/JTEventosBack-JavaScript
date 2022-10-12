@@ -13,3 +13,7 @@ exports.deleted = (param) => {
 exports.invalidAuth = () => {
     return { msg: "Usuário ou senha inválidos" }
 }
+
+exports.noData = (param) => {
+    return { msg: `Não há nenhum ${param} cadastrado` }
+}

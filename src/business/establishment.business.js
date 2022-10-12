@@ -7,6 +7,12 @@ exports.findAll = async () => {
     return establishments;
 }
 
+exports.findById = async (id) => {
+    const establishment = await establishmentRepository.findById(id);
+    establishmentValidators.validateIfExists(establishment);
+    return establishment;
+}
+
 exports.createEstablishment = async (description, cep, street, streetNumber, streetComplement, neighborhood, city, state) => {
     establishmentValidators.validateFields(description, cep, street, streetNumber, neighborhood, city, state);
     await establishmentRepository.createEstablishment(description, cep, street, streetNumber, streetComplement, neighborhood, city, state);

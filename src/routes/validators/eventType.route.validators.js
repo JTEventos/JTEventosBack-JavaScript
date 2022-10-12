@@ -16,7 +16,7 @@ exports.updateEventTypeSchema = {
     }
 }
 
-exports.deleteEventTypeSchema = {
+exports.getEventTypeByIdSchema = {
     id : {
         in: "params",
         isInt: true

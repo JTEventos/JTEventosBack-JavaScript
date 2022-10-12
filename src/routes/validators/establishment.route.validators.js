@@ -74,7 +74,7 @@ exports.updateEstablishmentSchema = {
     }
 }
 
-exports.deleteEstablishmentSchema = {
+exports.getEstablishmentByIdSchema = {
     id : {
         in: "params",
         isInt: true

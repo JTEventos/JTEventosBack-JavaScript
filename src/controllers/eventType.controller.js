@@ -1,12 +1,23 @@
 const { response } = require("../app");
 const eventTypeBusiness = require("../business/eventType.business");
 const { validationResult } = require("express-validator");
-const { created, updated, deleted } = require("./utils/return-message");
+const { created, updated, deleted, noData } = require("./utils/return-message");
 
 exports.findAll = async(req, resp, next) => {
     try {
         validationResult(req).throw()
         const result = await eventTypeBusiness.findAll();
+        result ? resp.json(result) : resp.status(404).json(noData("tipo de evento"));
+    } catch (e) {
+        next(e);
+    }
+}
+
+exports.findById = async(req, resp, next) => {
+    try {
+        validationResult(req).throw()
+        const { id } = req.params;
+        const result = await eventTypeBusiness.findById(id);
         resp.json(result);
     } catch (e) {
         next(e);

@@ -7,6 +7,12 @@ exports.findAll = async () => {
     return eventTypes;
 }
 
+exports.findById = async (id) => {
+    const eventType = await eventTypeRepository.findById(id);
+    eventTypeValidators.validateIfExists(eventType);
+    return eventType;
+}
+
 exports.createEventType = async (description) => {
     eventTypeValidators.validateFields(description);
     await eventTypeRepository.createEventType(description);

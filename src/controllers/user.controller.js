@@ -1,13 +1,13 @@
 const { response } = require("../app");
 const userBusiness = require("../business/user.business");
 const { validationResult } = require("express-validator");
-const { created, updated } = require("./utils/return-message");
+const { created, updated, noData } = require("./utils/return-message");
 
 exports.findAll = async(req, resp, next) => {
     try {
         validationResult(req).throw()
         const result = await userBusiness.findAll();
-        resp.json(result);
+        result ? resp.json(result) : resp.status(404).json(noData("usuário"));
     } catch (e) {
         next(e);
     }

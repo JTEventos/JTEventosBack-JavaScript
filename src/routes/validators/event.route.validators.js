@@ -70,7 +70,7 @@ exports.updateEventSchema = {
     }
 }
 
-exports.deleteEventSchema = {
+exports.getEventByIdSchema = {
     id : {
         in: "params",
         isInt: true
