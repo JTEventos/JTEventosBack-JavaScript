@@ -1,9 +1,34 @@
 const mongoErrorHandler = require("./utils/handle-mongo-error");
 const EventModel = require("../models/event.model");
+const CustomerModel = require("../models/customer.model");
+const EventTypeModel = require("../models/eventType.model");
+const EstablishmentModel = require("../models/establishment.model");
 
 exports.findAll = async () => {
     try {
-        const events = await EventModel.find();
+        const events = await EventModel.aggregate([{
+            $lookup: {
+                from: "customers",
+                localField: "customerId",
+                foreignField: "_id",
+                as: "customerId"
+            }
+        }, {
+            $lookup: {
+                from: "eventtypes",
+                localField: "eventTypeId",
+                foreignField: "_id",
+                as: "eventTypeId"
+            }
+        }, {
+            $lookup: {
+                from: "establishments",
+                localField: "establishmentId",
+                foreignField: "_id",
+                as: "establishmentId"
+            }
+        }]);
+        
         return events;
     } catch (e) {
         mongoErrorHandler(e);
@@ -12,7 +37,29 @@ exports.findAll = async () => {
 
 exports.findById = async (id) => {
     try {
-        const event = await EventModel.findById(id);
+        const event = await EventModel.aggregate([{ $match: { _id: { $in: [parseInt(id)] } } }, {
+            $lookup: {
+                from: "customers",
+                localField: "customerId",
+                foreignField: "_id",
+                as: "customerId"
+            }
+        }, {
+            $lookup: {
+                from: "eventtypes",
+                localField: "eventTypeId",
+                foreignField: "_id",
+                as: "eventTypeId"
+            }
+        }, {
+            $lookup: {
+                from: "establishments",
+                localField: "establishmentId",
+                foreignField: "_id",
+                as: "establishmentId"
+            }
+        }]);
+        
         return event;
     } catch (e) {
         mongoErrorHandler(e);
