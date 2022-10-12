@@ -13,6 +13,14 @@ exports.createUserSchema = {
     password : {
         notEmpty: true,
         errorMessage: "Valor inválido para 'password'"
+    },
+    role : {
+        notEmpty: true,
+        errorMessage: "Valor inválido para 'role'",
+        isIn: {
+            options:[["ADMIN", "EMPLOYEE"]], 
+            errorMessage: "Valor inválidos, valores aceitos: 'ADMIN' ou 'EMPLOYEE'"
+        }
     }
 }
 

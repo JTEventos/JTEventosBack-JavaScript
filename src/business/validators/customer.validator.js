@@ -1,4 +1,4 @@
-const { paramMustNotBeNull, notFound, notValid } = require("./utils/return-message");
+const { paramMustNotBeNull, notFound, notValid, noData } = require("./utils/return-message");
 
 exports.validateFields = (name, cpf, cep, street, streetNumber, neighborhood, city, state, email, mobileNumber) => {
     if (!name && !cpf && !cep && !street && !streetNumber && !neighborhood && !city && !state && !email && !mobileNumber) {
@@ -12,8 +12,8 @@ exports.validateIfExists = (customer) => {
     }
 }
 
-exports.validateNotNull = (events) => {
-    if (events.length == 0) {
+exports.validateNotNull = (customers) => {
+    if (customers.length == 0) {
         throw noData("Cliente");
     }
 }

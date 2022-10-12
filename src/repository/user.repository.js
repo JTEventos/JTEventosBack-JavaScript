@@ -3,7 +3,7 @@ const UserModel = require("../models/user.model");
 
 exports.findAll = async () => {
     try {
-        const user = await UserModel.find();
+        const user = await UserModel.find().select("-password");
         return user;
     } catch (e) {
         mongoErrorHandler(e);
@@ -12,18 +12,19 @@ exports.findAll = async () => {
 
 exports.findById = async (id) => {
     try {
-        const user = await UserModel.findById(id);
+        const user = await UserModel.findById(id).select("-password");
         return user;
     } catch (e) {
         mongoErrorHandler(e);
     }
 }
 
-exports.createUser = async (username, password) => {
+exports.createUser = async (username, password, role) => {
     try {
         const user = await UserModel({
             username: username,
-            password: password
+            password: password,
+            role: role
         });
         await user.save();
     } catch (e) {
@@ -31,13 +32,22 @@ exports.createUser = async (username, password) => {
     }
 }
 
-exports.updateUser = async (id, username, password) => {
+exports.updateUser = async (id, username, password, role) => {
     try {
         const user = await UserModel.findByIdAndUpdate(id, {
             username: username,
-            password: password
+            password: password,
+            role: role
         });
         await user.save();
+    } catch (e) {
+        mongoErrorHandler(e);
+    }
+}
+
+exports.deleteUser = async (id) => {
+    try {
+        await UserModel.findByIdAndDelete(id);
     } catch (e) {
         mongoErrorHandler(e);
     }

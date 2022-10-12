@@ -13,3 +13,7 @@ exports.notValid = (param) => {
 exports.noData = (param) => {
     return { status: 404, msg: `Não há nenhum ${param} cadastrado` }
 }
+
+exports.insufficientPrivileges = () => {
+    return { status: 401, msg: "Privilégios Insuficientes" }
+}

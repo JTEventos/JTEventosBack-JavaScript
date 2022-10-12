@@ -7,7 +7,6 @@ const customerRepository = require("../repository/customer.repository");
 const customerValidators = require("./validators/customer.validator");
 const eventRepository = require("../repository/event.repository");
 const eventValidators = require("./validators/event.validator");
-const { forEachConvertInviteListToArray, convertInviteListToArray } = require("./utils/return-array");
 
 exports.findAll = async () => {
     const events = await eventRepository.findAll();

@@ -1,4 +1,4 @@
-const { paramMustNotBeNull, notFound } = require("./utils/return-message");
+const { paramMustNotBeNull, notFound, noData, insufficientPrivileges } = require("./utils/return-message");
 
 exports.validateFields = (username, password) => {
     if (!username && !password) {
@@ -12,8 +12,14 @@ exports.validateIfExists = (user) => {
     }
 }
 
-exports.validateNotNull = (events) => {
-    if (events.length == 0) {
+exports.validateNotNull = (users) => {
+    if (users.length == 0) {
         throw noData("Usuário");
+    }
+}
+
+exports.validadeIsAdmin = (role) => {
+    if (role !== "ADMIN") {
+        throw insufficientPrivileges();
     }
 }

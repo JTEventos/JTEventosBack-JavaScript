@@ -1,4 +1,4 @@
-const { paramMustNotBeNull, notFound } = require("./utils/return-message");
+const { paramMustNotBeNull, notFound, noData } = require("./utils/return-message");
 
 exports.validateFields = (description) => {
     if (!description) {
@@ -12,8 +12,8 @@ exports.validateIfExists = (eventType) => {
     }
 }
 
-exports.validateNotNull = (events) => {
-    if (events.length == 0) {
+exports.validateNotNull = (eventTypes) => {
+    if (eventTypes.length == 0) {
         throw noData("Tipo de Evento");
     }
 }

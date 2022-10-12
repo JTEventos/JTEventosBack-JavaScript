@@ -11,5 +11,6 @@ userRoutes.get(path, userController.findAll);
 userRoutes.get(`${path}/:id`, checkSchema(getUserByIdSchema), userController.findById);
 userRoutes.post(path, checkSchema(createUserSchema), userController.createUser);
 userRoutes.put(`${path}/:id`, checkSchema(updateUserSchema), userController.updateUser);
+userRoutes.delete(`${path}/:id`, checkSchema(getUserByIdSchema), userController.deleteUser);
 
 module.exports = userRoutes;

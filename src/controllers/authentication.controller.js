@@ -12,7 +12,8 @@ exports.login = async (req, resp, next) => {
         User.findOne({ username: username }, async (e, login) => {
             if (login && login.password == password) {
                 const token = await sign({ username: username }, process.env.SECRET, { expiresIn: process.env.TIMEOUT || 300 });
-                resp.status(201).json({ id: login._id, username: login.username, token: token });
+                global.role = login.role;
+                resp.status(201).json({ id: login._id, username: login.username, role: login.role, token: token });
             } else {
                 resp.status(401).json(invalidAuth());
             }
