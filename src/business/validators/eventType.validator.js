@@ -11,3 +11,9 @@ exports.validateIfExists = (eventType) => {
         throw notFound("Tipo de Evento");
     }
 }
+
+exports.validateNotNull = (events) => {
+    if (events.length == 0) {
+        throw noData("Tipo de Evento");
+    }
+}

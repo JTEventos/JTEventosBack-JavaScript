@@ -11,3 +11,9 @@ exports.validateIfExists = (establishment) => {
         throw notFound("Estabelecimento");
     }
 }
+
+exports.validateNotNull = (events) => {
+    if (events.length == 0) {
+        throw noData("Estabelecimento");
+    }
+}

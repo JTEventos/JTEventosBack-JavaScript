@@ -4,6 +4,7 @@ const customerValidators = require("./validators/customer.validator");
 
 exports.findAll = async () => {
     const customers = await customerRepository.findAll();
+    customerValidators.validateNotNull(customers);
     return customers;
 }
 

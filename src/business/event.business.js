@@ -11,14 +11,13 @@ const { forEachConvertInviteListToArray, convertInviteListToArray } = require(".
 
 exports.findAll = async () => {
     const events = await eventRepository.findAll();
-    forEachConvertInviteListToArray(events);
+    eventValidators.validateNotNull(events);
     return events;
 }
 
 exports.findById = async (id) => {
     const event = await eventRepository.findById(id);
     eventValidators.validateIfExists(event);
-    convertInviteListToArray(event);
     return event;
 }
 

@@ -9,3 +9,7 @@ exports.notFound = (param) => {
 exports.notValid = (param) => {
     return { status: 404, msg: `${param} inválido` };
 }
+
+exports.noData = (param) => {
+    return { status: 404, msg: `Não há nenhum ${param} cadastrado` }
+}

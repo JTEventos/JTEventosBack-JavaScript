@@ -4,6 +4,7 @@ const eventTypeValidators = require("./validators/eventType.validator");
 
 exports.findAll = async () => {
     const eventTypes = await eventTypeRepository.findAll();
+    eventTypeValidators.validateNotNull(eventTypes);
     return eventTypes;
 }
 

@@ -7,7 +7,7 @@ exports.findAll = async(req, resp, next) => {
     try {
         validationResult(req).throw()
         const result = await userBusiness.findAll();
-        result ? resp.json(result) : resp.status(404).json(noData("usuário"));
+        resp.json(result);
     } catch (e) {
         next(e);
     }

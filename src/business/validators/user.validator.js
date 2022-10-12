@@ -11,3 +11,9 @@ exports.validateIfExists = (user) => {
         throw notFound("Usuário");
     }
 }
+
+exports.validateNotNull = (events) => {
+    if (events.length == 0) {
+        throw noData("Usuário");
+    }
+}

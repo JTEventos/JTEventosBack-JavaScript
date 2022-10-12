@@ -12,6 +12,12 @@ exports.validateIfExists = (customer) => {
     }
 }
 
+exports.validateNotNull = (events) => {
+    if (events.length == 0) {
+        throw noData("Cliente");
+    }
+}
+
 exports.validateCpf = (cpf) => {
     try {
         cpf = cpf.replace(/[^\d]+/g, "");

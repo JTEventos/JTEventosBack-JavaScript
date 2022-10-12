@@ -4,6 +4,7 @@ const establishmentValidators = require("./validators/establishment.validator");
 
 exports.findAll = async () => {
     const establishments = await establishmentRepository.findAll();
+    establishmentValidators.validateNotNull(establishments);
     return establishments;
 }
 
