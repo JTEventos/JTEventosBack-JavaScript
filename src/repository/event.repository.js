@@ -21,7 +21,7 @@ exports.findById = async (id) => {
 
 exports.createEvent = async (eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList) => {
     try {
-        const eventType = await EventModel({
+        const event = await EventModel({
             eventTypeId: eventTypeId,
             customerId: customerId,
             establishmentId: establishmentId,
@@ -30,7 +30,7 @@ exports.createEvent = async (eventTypeId, customerId, establishmentId, descripti
             finishDate: finishDate,
             inviteList: inviteList
         });
-        await eventType.save();
+        await event.save();
     } catch (e) {
         mongoErrorHandler(e);
     }
@@ -38,7 +38,7 @@ exports.createEvent = async (eventTypeId, customerId, establishmentId, descripti
 
 exports.updateEvent = async (id, eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList) => {
     try {
-        const eventType = await EventModel(id, {
+        const event = await EventModel.findByIdAndUpdate(id, {
             eventTypeId: eventTypeId,
             customerId: customerId,
             establishmentId: establishmentId,
@@ -47,7 +47,7 @@ exports.updateEvent = async (id, eventTypeId, customerId, establishmentId, descr
             finishDate: finishDate,
             inviteList: inviteList
         });
-        await eventType.save();
+        await event.save();
     } catch (e) {
         mongoErrorHandler(e);
     }

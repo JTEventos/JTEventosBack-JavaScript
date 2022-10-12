@@ -2,7 +2,7 @@ const express = require("express");
 const customerController = require("../controllers/customer.controller");
 
 const customerRoutes = express.Router();
-const path = "/customer";
+const path = "/api/customer";
 
 const { checkSchema } = require("express-validator")
 const { getCustomerByIdSchema, createCustomerSchema, updateCustomerSchema } = require("./validators/customer.route.validators")

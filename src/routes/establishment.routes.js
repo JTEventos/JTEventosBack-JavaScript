@@ -2,7 +2,7 @@ const express = require("express");
 const establishmentController = require("../controllers/establishment.controller");
 
 const establishmentRoutes = express.Router();
-const path = "/establishment";
+const path = "/api/establishment";
 
 const { checkSchema } = require("express-validator")
 const { getEstablishmentByIdSchema, createEstablishmentSchema, updateEstablishmentSchema } = require("./validators/establishment.route.validators")

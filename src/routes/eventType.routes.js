@@ -2,7 +2,7 @@ const express = require("express");
 const eventTypeController = require("../controllers/eventType.controller");
 
 const eventTypeRoutes = express.Router();
-const path = "/eventType";
+const path = "/api/eventType";
 
 const { checkSchema } = require("express-validator")
 const { getEventTypeByIdSchema, createEventTypeSchema, updateEventTypeSchema } = require("./validators/eventType.route.validators")

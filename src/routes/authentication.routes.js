@@ -3,7 +3,7 @@ const authenticationController = require("../controllers/authentication.controll
 const auth = require("../middleware/authentication.middleware");
 
 const authenticationRoutes = express.Router();
-const path = "/login"
+const path = "/api/login"
 
 const { checkSchema } = require("express-validator")
 const { loginSchema } = require("./validators/authentication.route.validators")

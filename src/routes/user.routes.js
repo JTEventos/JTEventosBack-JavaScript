@@ -2,7 +2,7 @@ const express = require("express");
 const userController = require("../controllers/user.controller");
 
 const userRoutes = express.Router();
-const path = "/user";
+const path = "/api/user";
 
 const { checkSchema } = require("express-validator")
 const { getUserByIdSchema, createUserSchema, updateUserSchema } = require("./validators/user.route.validators")

@@ -7,9 +7,9 @@ const EventSchema = new mongoose.Schema({
     customerId: {type: Number, required: true, trim: true},
     establishmentId: {type: Number, required: true, trim: true},
     description: {type: String, required: true, trim: true},
-    startDate: {type: String, required: true, trim: true},
-    finishDate: {type: String, required: true, trim: true},
-    inviteList: {type: String, required: true, trim: true}
+    startDate: {type: Date, required: true, trim: true},
+    finishDate: {type: Date, required: true, trim: true},
+    inviteList: {type: String, required: false, trim: true}
 })
 
 EventSchema.pre('save', function (next) {

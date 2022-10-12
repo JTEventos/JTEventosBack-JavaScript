@@ -5,13 +5,13 @@ const helmet = require("helmet");
 const db = require("./config/connection.database")
 
 const authenticationRoute = require("./routes/authentication.routes");
+const auth = require("./middleware/authentication.middleware");
 const userRoute = require("./routes/user.routes");
 const customerRoute = require("./routes/customer.routes");
 const eventTypeRoute = require("./routes/eventType.routes");
 const establishmentRoute = require("./routes/establishment.routes");
 const eventRoute = require("./routes/event.routes");
 const returnError = require("./controllers/utils/return-error");
-const auth = require("./middleware/authentication.middleware");
 
 const app = express();
 

@@ -16,5 +16,5 @@ exports.convertInviteListToArray = async (event) => {
 
 exports.forEachConvertInviteListToArray = async (events) => {
     events = Array<events>
-    events.forEach(convertInviteListToArray);
+    events.forEach(this.convertInviteListToArray);
 }
