@@ -5,11 +5,9 @@ try {
   mongoose.Promise = global.Promise;
   mongoose.connect(db, { dbName: process.env.DB_NAME, connectTimeoutMS: 1000, useNewUrlParser: true, useUnifiedTopology: true },
     function (error) {
-      if (error) {
-        console.log("MongoDB Error! " + error);
-      } else {
-        console.log("Conectado do mongoDB")
-      }
+      if (error) throw console.log(`MongoDB error: ${error}`);
+      
+      console.log("Database connected to MongoDB");
     }
   );
 } catch (e) {

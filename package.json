@@ -1,7 +1,7 @@
 {
   "name": "jt_eventos_back",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto Backend do sistema JT Eventos",
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon -r dotenv/config src/index.js",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/jonaspohlmann/jt_eventos_back.git"
   },
-  "author": "",
+  "author": "Jonas Pohlmann Araujo e Thiago Martins Proença",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jonaspohlmann/jt_eventos_back/issues"

@@ -12,6 +12,7 @@ exports.createEstablishmentSchema = {
         errorMessage: "Valor inválido para 'street'"
     },
     streetNumber : {
+        isInt: true,
         notEmpty: true,
         errorMessage: "Valor inválido para 'streetNumber'"
     },
@@ -51,6 +52,7 @@ exports.updateEstablishmentSchema = {
         errorMessage: "Valor inválido para 'street'"
     },
     streetNumber : {
+        isInt: true,
         notEmpty: true,
         errorMessage: "Valor inválido para 'streetNumber'"
     },

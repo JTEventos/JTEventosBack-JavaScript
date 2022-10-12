@@ -1,19 +1,19 @@
 const mongoErrorHandler = require("./utils/handle-mongo-error");
 const EstablishmentModel = require("../models/establishment.model")
 
-exports.checkIfExists = async (id) => {
+exports.findAll = async () => {
     try {
-        const establishment = await EstablishmentModel.findById(id);
-        return establishment;
+        const establishments = await EstablishmentModel.find();
+        return establishments;
     } catch (e) {
         mongoErrorHandler(e);
     }
 }
 
-exports.findAll = async () => {
+exports.findById = async (id) => {
     try {
-        const establishments = await EstablishmentModel.find();
-        return establishments;
+        const establishment = await EstablishmentModel.findById(id);
+        return establishment;
     } catch (e) {
         mongoErrorHandler(e);
     }
@@ -30,7 +30,7 @@ exports.createEstablishment = async (description, cep, street, streetNumber, str
             neighborhood: neighborhood,
             city: city,
             state: state
-        })
+        });
         await establishment.save();
     } catch (e) {
         mongoErrorHandler(e);

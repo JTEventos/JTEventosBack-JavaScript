@@ -11,6 +11,7 @@ const eventTypeRoute = require("./routes/eventType.routes");
 const establishmentRoute = require("./routes/establishment.routes");
 const eventRoute = require("./routes/event.routes");
 const returnError = require("./controllers/utils/return-error");
+const auth = require("./middleware/authentication.middleware");
 
 const app = express();
 
@@ -28,6 +29,8 @@ if (process.env.NODE_ENV === 'development') {
 
 //Adding routes
 app.use(authenticationRoute);
+
+app.use(auth.verifyJwt);
 app.use(userRoute);
 app.use(customerRoute);
 app.use(eventTypeRoute);

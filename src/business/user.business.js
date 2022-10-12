@@ -2,13 +2,14 @@ const { Result } = require("express-validator");
 const userRepository = require("../repository/user.repository");
 const userValidators = require("./validators/user.validator");
 
-exports.findAll = async (query) => {
-    const users = await userRepository.findAll(query);
+exports.findAll = async () => {
+    const users = await userRepository.findAll();
     return users;
 }
 
 exports.findById = async (id) => {
     const user = await userRepository.findById(id);
+    userValidators.validateIfExists(user);
     return user;
 }
 
@@ -19,7 +20,7 @@ exports.createUser = async (username, password) => {
 
 exports.updateUser = async (id, username, password) => {
     userValidators.validateFields(username, password);
-    const user = await userRepository.checkIfExists(id);
-    userValidators.validateIfExists(user)
+    const user = await userRepository.findById(id);
+    userValidators.validateIfExists(user);
     await userRepository.updateUser(id, username, password);
 }

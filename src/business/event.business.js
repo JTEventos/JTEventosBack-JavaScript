@@ -2,8 +2,8 @@ const { Result } = require("express-validator");
 const eventRepository = require("../repository/event.repository");
 const eventValidators = require("./validators/event.validator");
 
-exports.findAll = async (query) => {
-    const events = await eventRepository.findAll(query);
+exports.findAll = async () => {
+    const events = await eventRepository.findAll();
     return events;
 }
 

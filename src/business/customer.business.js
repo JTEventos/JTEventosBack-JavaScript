@@ -2,23 +2,14 @@ const { Result } = require("express-validator");
 const customerRepository = require("../repository/customer.repository");
 const customerValidators = require("./validators/customer.validator");
 
-exports.findAll = async (query) => {
-    const customers = await customerRepository.findAll(query);
+exports.findAll = async () => {
+    const customers = await customerRepository.findAll();
     return customers;
 }
 
 exports.findById = async (id) => {
     const customer = await customerRepository.findById(id);
-    return customer;
-}
-
-exports.findByName = async (name) => {
-    const customers = await customerRepository.findById(name);
-    return customers;
-}
-
-exports.findByCpf = async (cpf) => {
-    const customer = await customerRepository.findById(cpf);
+    customerValidators.validateIfExists(customer);
     return customer;
 }
 
@@ -31,13 +22,13 @@ exports.createCustomer = async (name, cpf, cep, street, streetNumber, streetComp
 exports.updateCustomer = async (id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber) => {
     customerValidators.validateFields(name, cpf, cep, street, streetNumber, neighborhood, city, state, email, mobileNumber);
     customerValidators.validateCpf(cpf);
-    const customer = await customerRepository.checkIfExists(id);
+    const customer = await customerRepository.findById(id);
     customerValidators.validateIfExists(customer);
     await customerRepository.updateCustomer(id, name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
 }
 
 exports.deleteCustomer = async (id) => {
-    const customer = await customerRepository.checkIfExists(id);
+    const customer = await customerRepository.findById(id);
     customerValidators.validateIfExists(customer);
     await customerRepository.deleteCustomer(id);
 }

@@ -1,12 +1,11 @@
 const mongoErrorHandler = require("./utils/handle-mongo-error");
 const EventModel = require("../models/event.model");
 
-exports.checkIfExists = async (id) => {
+exports.findAll = async () => {
     const db = await pool.connect();
     try {
-        const query = `SELECT * FROM EVENT WHERE ID = $1`;
-        const result = await db.query(query, [id]);
-        return result.rowCount;
+        const query = `SELECT * FROM EVENT`;
+        return await db.query(query);
     } catch(e) {
         mongoErrorHandler(err);
     } finally {
@@ -14,11 +13,12 @@ exports.checkIfExists = async (id) => {
     }
 }
 
-exports.findAll = async () => {
+exports.findById = async (id) => {
     const db = await pool.connect();
     try {
-        const query = `SELECT * FROM EVENT`;
-        return await db.query(query);
+        const query = `SELECT * FROM EVENT WHERE ID = $1`;
+        const result = await db.query(query, [id]);
+        return result.rowCount;
     } catch(e) {
         mongoErrorHandler(err);
     } finally {
@@ -35,8 +35,8 @@ exports.createEvent = async (eventTypeId, customerId, establishmentId, descripti
             description: description,
             startDate: startDate,
             finishDate: finishDate,
-            inviteList: inviteList}
-        );
+            inviteList: inviteList
+        });
         await eventType.save();
     } catch (error) {
         mongoErrorHandler(error);

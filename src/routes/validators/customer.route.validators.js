@@ -5,20 +5,6 @@ exports.getCustomerByIdSchema = {
     }
 }
 
-exports.getCustomerByNameSchema = {
-    name : {
-        in: "params",
-        isInt: true
-    }
-}
-
-exports.getCustomerByCpfSchema = {
-    cpf : {
-        in: "params",
-        isInt: true
-    }
-}
-
 exports.createCustomerSchema = {
     name : {
         notEmpty: true,
@@ -37,6 +23,7 @@ exports.createCustomerSchema = {
         errorMessage: "Valor inválido para 'street'"
     },
     streetNumber : {
+        isInt: true,
         notEmpty: true,
         errorMessage: "Valor inválido para 'streetNumber'"
     },
@@ -92,6 +79,7 @@ exports.updateCustomerSchema = {
         errorMessage: "Valor inválido para 'street'"
     },
     streetNumber : {
+        isInt: true,
         notEmpty: true,
         errorMessage: "Valor inválido para 'streetNumber'"
     },

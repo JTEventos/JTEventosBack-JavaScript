@@ -2,8 +2,8 @@ const { Result } = require("express-validator");
 const establishmentRepository = require("../repository/establishment.repository");
 const establishmentValidators = require("./validators/establishment.validator");
 
-exports.findAll = async (query) => {
-    const establishments = await establishmentRepository.findAll(query);
+exports.findAll = async () => {
+    const establishments = await establishmentRepository.findAll();
     return establishments;
 }
 
@@ -14,13 +14,13 @@ exports.createEstablishment = async (description, cep, street, streetNumber, str
 
 exports.updateEstablishment = async (id, description, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber) => {
     establishmentValidators.validateFields(description, cep, street, streetNumber, neighborhood, city, state);
-    const establishment = await establishmentRepository.checkIfExists(id);
+    const establishment = await establishmentRepository.findById(id);
     establishmentValidators.validateIfExists(establishment);
     await establishmentRepository.updateEstablishment(id, description, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber);
 }
 
 exports.deleteEstablishment = async (id) => {
-    const establishment = await establishmentRepository.checkIfExists(id);
+    const establishment = await establishmentRepository.findById(id);
     establishmentValidators.validateIfExists(establishment);
     await establishmentRepository.deleteEstablishment(id);
 }

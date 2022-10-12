@@ -5,12 +5,10 @@ const customerRoutes = express.Router();
 const path = "/customer";
 
 const { checkSchema } = require("express-validator")
-const { getCustomerByIdSchema, getCustomerByNameSchema, getCustomerByCpfSchema, createCustomerSchema, updateCustomerSchema } = require("./validators/customer.route.validators")
+const { getCustomerByIdSchema, createCustomerSchema, updateCustomerSchema } = require("./validators/customer.route.validators")
 
 customerRoutes.get(path, customerController.findAll);
 customerRoutes.get(`${path}/:id`, checkSchema(getCustomerByIdSchema), customerController.findById);
-customerRoutes.get(`${path}/name/:name`, checkSchema(getCustomerByNameSchema), customerController.findByName);
-customerRoutes.get(`${path}/cpf/:cpf`, checkSchema(getCustomerByCpfSchema), customerController.findByCpf);
 customerRoutes.post(path, checkSchema(createCustomerSchema), customerController.createCustomer);
 customerRoutes.put(`${path}/:id`, checkSchema(updateCustomerSchema), customerController.updateCustomer);
 customerRoutes.delete(`${path}/:id`, checkSchema(getCustomerByIdSchema), customerController.deleteCustomer);
