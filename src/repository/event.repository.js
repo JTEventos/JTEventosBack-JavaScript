@@ -1,8 +1,5 @@
 const mongoErrorHandler = require("./utils/handle-mongo-error");
 const EventModel = require("../models/event.model");
-const CustomerModel = require("../models/customer.model");
-const EventTypeModel = require("../models/eventType.model");
-const EstablishmentModel = require("../models/establishment.model");
 
 exports.findAll = async () => {
     try {
@@ -34,6 +31,16 @@ exports.findAll = async () => {
         mongoErrorHandler(e);
     }
 }
+
+exports.checkIfExists = async (id) => {
+    try {
+        const event = await EventModel.findById(id);
+        return event;
+    } catch (e) {
+        mongoErrorHandler(e);
+    }
+}
+
 
 exports.findById = async (id) => {
     try {

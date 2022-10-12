@@ -27,7 +27,7 @@ exports.findById = async(req, resp, next) => {
 exports.createEvent = async (req, resp, next) => {
     try {
         validationResult(req).throw()
-        const { eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList } = req.body;
+        const { eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList } = req.body;        
         await eventBusiness.createEvent(eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList);
         resp.status(201).json(created("Evento"));
     } catch(e) {
