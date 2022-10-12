@@ -27,7 +27,7 @@ exports.createEventSchema = {
         errorMessage: "Valor inválido para 'finishDate'"
     },
     inviteList : {
-        notEmpty: true,
+        notEmpty: false,
         errorMessage: "Valor inválido para 'inviteList'"
     }
 }
@@ -65,7 +65,7 @@ exports.updateEventSchema = {
         errorMessage: "Valor inválido para 'finishDate'"
     },
     inviteList : {
-        notEmpty: true,
+        notEmpty: false,
         errorMessage: "Valor inválido para 'inviteList'"
     }
 }
