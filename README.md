@@ -43,5 +43,9 @@ npm run dev
 ```
 
 # Desenvolvedores
+<div align="center">
+
 | [<img src="https://github.com/jonaspohlmann.png" width=115 ><br><sub>Jonas Polhmann Araujo](https://github.com/jonaspohlmann)</sub> | [<img src="https://github.com/thiagoenca.png" width=115><br><sub>Thiago Martins Proença](https://github.com/thiagoenca)</sub> |
 |:-----------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
+
+</div>
