@@ -1,4 +1,5 @@
 const mongoErrorHandler = require("./utils/handle-mongo-error");
+const { hashSync } = require("bcrypt");
 const UserModel = require("../models/user.model");
 
 exports.findAll = async () => {
@@ -26,6 +27,7 @@ exports.createUser = async (username, password, role) => {
             password: password,
             role: role
         });
+        user.password = hashSync(password, 10);
         await user.save();
     } catch (e) {
         mongoErrorHandler(e);
@@ -39,6 +41,7 @@ exports.updateUser = async (id, username, password, role) => {
             password: password,
             role: role
         });
+        user.password = hashSync(password, 10);
         await user.save();
     } catch (e) {
         mongoErrorHandler(e);

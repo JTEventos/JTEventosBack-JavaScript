@@ -31,7 +31,6 @@ exports.updateUser = async (id, username, password, role) => {
 exports.deleteUser = async (id) => {
     const user = await userRepository.findById(id);
     userValidators.validateIfExists(user);
-    //console.log("Role: " + global.role)
     userValidators.validadeIsAdmin(global.role)
     await userRepository.deleteUser(id);
 }

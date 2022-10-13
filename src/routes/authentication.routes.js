@@ -1,6 +1,5 @@
 const express = require("express");
 const authenticationController = require("../controllers/authentication.controller");
-const auth = require("../middleware/authentication.middleware");
 
 const authenticationRoutes = express.Router();
 const path = "/api/login"

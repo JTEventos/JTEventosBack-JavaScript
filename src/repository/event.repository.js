@@ -10,14 +10,16 @@ exports.findAll = async () => {
                 foreignField: "_id",
                 as: "customerId"
             }
-        }, {
+        },
+        {
             $lookup: {
                 from: "eventtypes",
                 localField: "eventTypeId",
                 foreignField: "_id",
                 as: "eventTypeId"
             }
-        }, {
+        },
+        {
             $lookup: {
                 from: "establishments",
                 localField: "establishmentId",
@@ -25,7 +27,7 @@ exports.findAll = async () => {
                 as: "establishmentId"
             }
         }]);
-        
+
         return events;
     } catch (e) {
         mongoErrorHandler(e);
@@ -41,24 +43,32 @@ exports.checkIfExists = async (id) => {
     }
 }
 
-
 exports.findById = async (id) => {
     try {
-        const event = await EventModel.aggregate([{ $match: { _id: { $in: [parseInt(id)] } } }, {
+        const event = await EventModel.aggregate([{
+            $match: {
+                _id: {
+                    $in: [ parseInt(id) ]
+                }
+            }
+        },
+        {
             $lookup: {
                 from: "customers",
                 localField: "customerId",
                 foreignField: "_id",
                 as: "customerId"
             }
-        }, {
+        },
+        {
             $lookup: {
                 from: "eventtypes",
                 localField: "eventTypeId",
                 foreignField: "_id",
                 as: "eventTypeId"
             }
-        }, {
+        },
+        {
             $lookup: {
                 from: "establishments",
                 localField: "establishmentId",

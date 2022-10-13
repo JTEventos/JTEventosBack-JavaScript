@@ -22,7 +22,6 @@ exports.findById = async (id) => {
 }
 
 exports.createEvent = async (eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList) => {
-
     const startDateFormated = dateFormat(startDate);
     const finishDateFormated = dateFormat(finishDate);
 
