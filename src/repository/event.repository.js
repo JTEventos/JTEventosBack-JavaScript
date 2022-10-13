@@ -3,30 +3,34 @@ const EventModel = require("../models/event.model");
 
 exports.findAll = async () => {
     try {
-        const events = await EventModel.aggregate([{
-            $lookup: {
-                from: "customers",
-                localField: "customerId",
-                foreignField: "_id",
-                as: "customerId"
-            }
-        },
-        {
-            $lookup: {
-                from: "eventtypes",
-                localField: "eventTypeId",
-                foreignField: "_id",
-                as: "eventTypeId"
-            }
-        },
-        {
-            $lookup: {
-                from: "establishments",
-                localField: "establishmentId",
-                foreignField: "_id",
-                as: "establishmentId"
-            }
-        }]);
+        const events = await EventModel.aggregate(
+            [
+                {
+                    $lookup: {
+                        from: "customers",
+                        localField: "customerId",
+                        foreignField: "_id",
+                        as: "customerId"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "eventtypes",
+                        localField: "eventTypeId",
+                        foreignField: "_id",
+                        as: "eventTypeId"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "establishments",
+                        localField: "establishmentId",
+                        foreignField: "_id",
+                        as: "establishmentId"
+                    }
+                }
+            ]
+        );
 
         return events;
     } catch (e) {
@@ -45,37 +49,41 @@ exports.checkIfExists = async (id) => {
 
 exports.findById = async (id) => {
     try {
-        const event = await EventModel.aggregate([{
-            $match: {
-                _id: {
-                    $in: [ parseInt(id) ]
+        const event = await EventModel.aggregate(
+            [
+                {
+                    $match: {
+                        _id: {
+                            $in: [ parseInt(id) ]
+                        }
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "customers",
+                        localField: "customerId",
+                        foreignField: "_id",
+                        as: "customerId"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "eventtypes",
+                        localField: "eventTypeId",
+                        foreignField: "_id",
+                        as: "eventTypeId"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "establishments",
+                        localField: "establishmentId",
+                        foreignField: "_id",
+                        as: "establishmentId"
+                    }
                 }
-            }
-        },
-        {
-            $lookup: {
-                from: "customers",
-                localField: "customerId",
-                foreignField: "_id",
-                as: "customerId"
-            }
-        },
-        {
-            $lookup: {
-                from: "eventtypes",
-                localField: "eventTypeId",
-                foreignField: "_id",
-                as: "eventTypeId"
-            }
-        },
-        {
-            $lookup: {
-                from: "establishments",
-                localField: "establishmentId",
-                foreignField: "_id",
-                as: "establishmentId"
-            }
-        }]);
+            ]
+        );
         
         return event;
     } catch (e) {
