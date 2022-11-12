@@ -6,6 +6,10 @@ exports.getUserByIdSchema = {
 }
 
 exports.createUserSchema = {
+    name : {
+        notEmpty: true,
+        errorMessage: "Valor inválido para 'name'"
+    },
     username : {
         notEmpty: true,
         errorMessage: "Valor inválido para 'username'"
@@ -19,7 +23,7 @@ exports.createUserSchema = {
         errorMessage: "Valor inválido para 'role'",
         isIn: {
             options:[["ADMIN", "EMPLOYEE"]], 
-            errorMessage: "Valor inválidos, valores aceitos: 'ADMIN' ou 'EMPLOYEE'"
+            errorMessage: "Valor inválido. Valores aceitos: 'ADMIN' ou 'EMPLOYEE'"
         }
     }
 }
@@ -29,6 +33,10 @@ exports.updateUserSchema = {
         in: "params",
         isInt: true
     },
+    name : {
+        notEmpty: true,
+        errorMessage: "Valor inválido para 'name'"
+    },
     username : {
         notEmpty: true,
         errorMessage: "Valor inválido para 'username'"
@@ -36,5 +44,13 @@ exports.updateUserSchema = {
     password : {
         notEmpty: true,
         errorMessage: "Valor inválido para 'password'"
+    },
+    role : {
+        notEmpty: true,
+        errorMessage: "Valor inválido para 'role'",
+        isIn: {
+            options:[["ADMIN", "EMPLOYEE"]], 
+            errorMessage: "Valor inválido. Valores aceitos: 'ADMIN' ou 'EMPLOYEE'"
+        }
     }
 }

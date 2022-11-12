@@ -1,8 +1,8 @@
 const { paramMustNotBeNull, notFound, noData, insufficientPrivileges } = require("./utils/return-message");
 
-exports.validateFields = (username, password) => {
-    if (!username && !password) {
-        throw paramMustNotBeNull("username, password");
+exports.validateFields = (name, username, password, role) => {
+    if (!name && !username && !password && !role) {
+        throw paramMustNotBeNull("name, username, password, role");
     }
 }
 

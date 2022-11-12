@@ -14,18 +14,18 @@ exports.findById = async (id) => {
     return user;
 }
 
-exports.createUser = async (username, password, role) => {
-    userValidators.validateFields(username, password, role);
+exports.createUser = async (name, username, password, role) => {
+    userValidators.validateFields(name, username, password, role);
     userValidators.validadeIsAdmin(global.role)
-    await userRepository.createUser(username, password, role);
+    await userRepository.createUser(name, username, password, role);
 }
 
-exports.updateUser = async (id, username, password, role) => {
-    userValidators.validateFields(username, password, role);
+exports.updateUser = async (id, name, username, password, role) => {
+    userValidators.validateFields(name, username, password, role);
     const user = await userRepository.findById(id);
     userValidators.validateIfExists(user);
     userValidators.validadeIsAdmin(global.role)
-    await userRepository.updateUser(id, username, password, role);
+    await userRepository.updateUser(id, name, username, password, role);
 }
 
 exports.deleteUser = async (id) => {

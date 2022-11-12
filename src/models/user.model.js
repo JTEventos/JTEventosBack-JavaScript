@@ -3,6 +3,7 @@ const autoIncrementModelID = require('../models/counter.model');
 
 const UserSchema = new mongoose.Schema({
     _id: { type: Number, required: false, trim: true },
+    name: { type: String, required: true, trim: true },
     username: { type: String, required: true, trim: true },
     password: { type: String, required: true, trim: true },
     role: { type: String, required: true, trim: true }

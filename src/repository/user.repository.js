@@ -20,9 +20,10 @@ exports.findById = async (id) => {
     }
 }
 
-exports.createUser = async (username, password, role) => {
+exports.createUser = async (name, username, password, role) => {
     try {
         const user = await UserModel({
+            name: name,
             username: username,
             password: password,
             role: role
@@ -34,9 +35,10 @@ exports.createUser = async (username, password, role) => {
     }
 }
 
-exports.updateUser = async (id, username, password, role) => {
+exports.updateUser = async (id, name, username, password, role) => {
     try {
         const user = await UserModel.findByIdAndUpdate(id, {
+            name: name,
             username: username,
             password: password,
             role: role

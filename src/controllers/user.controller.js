@@ -27,8 +27,8 @@ exports.findById = async(req, resp, next) => {
 exports.createUser = async (req, resp, next) => {
     try {
         validationResult(req).throw()
-        const { username, password, role } = req.body;
-        await userBusiness.createUser(username, password, role);
+        const { name, username, password, role } = req.body;
+        await userBusiness.createUser(name, username, password, role);
         resp.status(201).json(created("Usuário"));
     } catch (e) {
         next(e);
@@ -39,8 +39,8 @@ exports.updateUser = async (req, resp, next) => {
     try {
         validationResult(req).throw()
         const { id } = req.params;
-        const { username, password, role } = req.body;
-        await userBusiness.updateUser(id, username, password, role);
+        const { name, username, password, role } = req.body;
+        await userBusiness.updateUser(id, name, username, password, role);
         resp.status(200).json(updated("Usuário"));
     } catch (e) {
         next(e);
