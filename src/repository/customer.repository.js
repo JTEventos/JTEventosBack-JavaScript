@@ -19,6 +19,25 @@ exports.findById = async (id) => {
     }
 }
 
+exports.findByCpf = async (cpf, id = undefined) => {
+    try {        
+        let customer;
+        if (id) {
+            customer = await CustomerModel.find({
+                _id: { $ne: id },
+                cpf: cpf
+            })
+        } else {
+            customer = await CustomerModel.find({
+                cpf: cpf
+            })
+        }
+        return customer;
+    } catch (e) {
+        mongoErrorHandler(e);
+    }
+}
+
 exports.createCustomer = async (name, cpf, cep, street, streetNumber, streetComplement, neighborhood, city, state, email, mobileNumber, phoneNumber) => {
     try {
         const customer = await CustomerModel({

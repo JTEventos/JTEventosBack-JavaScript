@@ -47,6 +47,42 @@ exports.checkIfExists = async (id) => {
     }
 }
 
+exports.findEventsOnThisRangeDate = async (establishmentId, startDate, finishDate, id = undefined) => {
+    try {
+        let events = undefined;
+        console.log(id)
+        if (id) {
+            events = await EventModel.find({
+                _id: { $ne: id },
+                establishmentId: establishmentId,
+                startDate: {
+                    $gte: new Date(startDate),
+                    $lte: new Date(finishDate)
+                },
+                finishDate: {
+                    $gte: new Date(startDate),
+                    $lte: new Date(finishDate)
+                }
+            })
+        } else {
+            events = await EventModel.find({
+                establishmentId: establishmentId,
+                startDate: {
+                    $gte: new Date(startDate),
+                    $lte: new Date(finishDate)
+                },
+                finishDate: {
+                    $gte: new Date(startDate),
+                    $lte: new Date(finishDate)
+                }
+            });
+        }
+        return events;
+    } catch (e) {
+        mongoErrorHandler(e);
+    }
+}
+
 exports.findById = async (id) => {
     try {
         const event = await EventModel.aggregate(
@@ -54,7 +90,7 @@ exports.findById = async (id) => {
                 {
                     $match: {
                         _id: {
-                            $in: [ parseInt(id) ]
+                            $in: [parseInt(id)]
                         }
                     }
                 },
@@ -84,7 +120,7 @@ exports.findById = async (id) => {
                 }
             ]
         );
-        
+
         return event;
     } catch (e) {
         mongoErrorHandler(e);

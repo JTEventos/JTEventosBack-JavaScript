@@ -16,15 +16,22 @@ exports.findById = async (id) => {
 
 exports.createUser = async (name, username, password, role) => {
     userValidators.validateFields(name, username, password, role);
-    userValidators.validadeIsAdmin(global.role)
+    userValidators.validadeIsAdmin(global.role);
+    const user = await userRepository.findByUsername(username);
+    userValidators.validateUsername(user);
+
     await userRepository.createUser(name, username, password, role);
+
 }
 
 exports.updateUser = async (id, name, username, password, role) => {
     userValidators.validateFields(name, username, password, role);
     const user = await userRepository.findById(id);
     userValidators.validateIfExists(user);
-    userValidators.validadeIsAdmin(global.role)
+    userValidators.validadeIsAdmin(global.role);
+    const user1 = await userRepository.findByUsername(username, id);
+    userValidators.validateUsername(user1);
+
     await userRepository.updateUser(id, name, username, password, role);
 }
 

@@ -1,4 +1,4 @@
-const { paramMustNotBeNull, notFound, noData } = require("./utils/return-message");
+const { paramMustNotBeNull, notFound, noData, onThisDate } = require("./utils/return-message");
 
 exports.validateFields = (eventTypeId, customerId, establishmentId, description, startDate, finishDate) => {
     if (!eventTypeId && !customerId && !establishmentId && !description && !startDate && !finishDate) {
@@ -9,6 +9,12 @@ exports.validateFields = (eventTypeId, customerId, establishmentId, description,
 exports.validateIfExists = (event) => {
     if (!event) {
         throw notFound("Evento");
+    }
+}
+
+exports.validateDateRange = (events) => {
+    if (events.length != 0) {
+        throw onThisDate("Eventos");
     }
 }
 

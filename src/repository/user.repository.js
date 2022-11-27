@@ -20,6 +20,25 @@ exports.findById = async (id) => {
     }
 }
 
+exports.findByUsername = async (username, id = undefined) => {
+    try {
+        let user;
+        if (id) {
+            user = await UserModel.find({
+                _id: { $ne: id },
+                username: username
+            })
+        } else {
+            user = await UserModel.find({
+                username: username
+            })
+        }
+        return user;
+    } catch (e) {
+        mongoErrorHandler(e);
+    }
+}
+
 exports.createUser = async (name, username, password, role) => {
     try {
         const user = await UserModel({

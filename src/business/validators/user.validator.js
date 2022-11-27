@@ -1,4 +1,4 @@
-const { paramMustNotBeNull, notFound, noData, insufficientPrivileges } = require("./utils/return-message");
+const { paramMustNotBeNull, notFound, noData, insufficientPrivileges, exists } = require("./utils/return-message");
 
 exports.validateFields = (name, username, password, role) => {
     if (!name && !username && !password && !role) {
@@ -15,6 +15,12 @@ exports.validateIfExists = (user) => {
 exports.validateNotNull = (users) => {
     if (users.length == 0) {
         throw noData("Usuário");
+    }
+}
+
+exports.validateUsername = (users) => {
+    if (users.length != 0) {
+        throw exists("Usuário", "username");
     }
 }
 

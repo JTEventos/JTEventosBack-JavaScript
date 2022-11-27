@@ -32,6 +32,9 @@ exports.createEvent = async (eventTypeId, customerId, establishmentId, descripti
     establishmentValidators.validateIfExists(establishment);
     const customer = await customerRepository.findById(customerId);
     customerValidators.validateIfExists(customer);
+    const events = await eventRepository.findEventsOnThisRangeDate(establishmentId, startDateFormated, finishDateFormated);
+    eventValidators.validateDateRange(events);
+
     await eventRepository.createEvent(eventTypeId, customerId, establishmentId, description, startDateFormated, finishDateFormated, inviteList);
 }
 
@@ -48,6 +51,9 @@ exports.updateEvent = async (id, eventTypeId, customerId, establishmentId, descr
     establishmentValidators.validateIfExists(establishment);
     const customer = await customerRepository.findById(customerId);
     customerValidators.validateIfExists(customer);
+    const events = await eventRepository.findEventsOnThisRangeDate(establishmentId, startDateFormated, finishDateFormated, id);
+    eventValidators.validateDateRange(events);
+
     await eventRepository.updateEvent(id, eventTypeId, customerId, establishmentId, description, startDateFormated, finishDateFormated, inviteList);
 }
 
