@@ -1,7 +1,7 @@
 exports.createEventTypeSchema = {
     description : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'description'"
+        errorMessage: "Campo \"Descrição\" é obrigatório"
     }
 }
 
@@ -12,7 +12,7 @@ exports.updateEventTypeSchema = {
     },
     description : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'description'"
+        errorMessage: "Campo \"Descrição\" é obrigatório"
     }
 }
 

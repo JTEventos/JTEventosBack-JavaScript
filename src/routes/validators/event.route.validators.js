@@ -2,33 +2,32 @@ exports.createEventSchema = {
     eventTypeId : {
         notEmpty: true,
         isInt: true,
-        errorMessage: "Valor inválido para 'eventTypeId'"
+        errorMessage: "Campo \"Tipo de Evento\" é obrigatório. Selecione uma das opções disponíveis"
     }, 
     customerId : {
         notEmpty: true,
         isInt: true,
-        errorMessage: "Valor inválido para 'customerId'"
+        errorMessage: "Campo \"Cliente\" é obrigatório. Selecione uma das opções disponíveis"
     }, 
     establishmentId : {
         notEmpty: true,
         isInt: true,
-        errorMessage: "Valor inválido para 'establishmentId'"
+        errorMessage: "Campo \"Estabelecimento\" é obrigatório. Selecione uma das opções disponíveis"
     }, 
     description : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'description'"
+        errorMessage: "Campo \"Descrição\" é obrigatório"
     },
     startDate : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'startDate'"
+        errorMessage: "Campo \"Data inicial\" é obrigatório"
     },
     finishDate : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'finishDate'"
+        errorMessage: "Campo \"Data final\" é obrigatório"
     },
     inviteList : {
-        notEmpty: false,
-        errorMessage: "Valor inválido para 'inviteList'"
+        notEmpty: false
     }
 }
 
@@ -40,33 +39,32 @@ exports.updateEventSchema = {
     eventTypeId : {
         notEmpty: true,
         isInt: true,
-        errorMessage: "Valor inválido para 'eventTypeId'"
+        errorMessage: "Campo \"Tipo de Evento\" é obrigatório. Selecione uma das opções disponíveis"
     }, 
     customerId : {
         notEmpty: true,
         isInt: true,
-        errorMessage: "Valor inválido para 'customerId'"
+        errorMessage: "Campo \"Cliente\" é obrigatório. Selecione uma das opções disponíveis"
     }, 
     establishmentId : {
         notEmpty: true,
         isInt: true,
-        errorMessage: "Valor inválido para 'establishmentId'"
+        errorMessage: "Campo \"Estabelecimento\" é obrigatório. Selecione uma das opções disponíveis"
     }, 
     description : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'description'"
+        errorMessage: "Campo \"Descrição\" é obrigatório"
     },
     startDate : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'startDate'"
+        errorMessage: "Campo \"Data inicial\" é obrigatório"
     },
     finishDate : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'finishDate'"
+        errorMessage: "Campo \"Data final\" é obrigatório"
     },
     inviteList : {
-        notEmpty: false,
-        errorMessage: "Valor inválido para 'inviteList'"
+        notEmpty: false
     }
 }
 

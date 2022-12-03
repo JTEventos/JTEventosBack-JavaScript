@@ -1,3 +1,3 @@
 exports.sessionExpired = () => {
-    return { msg: "Sessão foi expirada" }
-}
+    return { msg: "Sessão foi expirada" };
+};

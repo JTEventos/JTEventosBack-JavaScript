@@ -1,36 +1,35 @@
 exports.createEstablishmentSchema = {
     description : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'description'"
+        errorMessage: "Campo \"Descrição\" é obrigatório"
     }, 
     cep : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'cep'"
+        errorMessage: "Campo \"CEP\" é obrigatório"
     }, 
     street : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'street'"
+        errorMessage: "Campo \"Logradouro\" é obrigatório"
     },
     streetNumber : {
         isInt: true,
         notEmpty: true,
-        errorMessage: "Valor inválido para 'streetNumber'"
+        errorMessage: "Campo \"Número\" é obrigatório"
     },
     streetComplement : {
-        notEmpty: false,
-        errorMessage: "Valor inválido para 'streetComplement'"
+        notEmpty: false
     },
     neighborhood : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'neighborhood'"
+        errorMessage: "Campo \"Bairro\" é obrigatório"
     },
     city : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'city'"
+        errorMessage: "Campo \"Cidade\" é obrigatório"
     },
     state : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'state'"
+        errorMessage: "Campo \"UF\" é obrigatório"
     }
 }
 
@@ -41,36 +40,35 @@ exports.updateEstablishmentSchema = {
     },
     description : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'description'"
+        errorMessage: "Campo \"Descrição\" é obrigatório"
     }, 
     cep : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'cep'"
+        errorMessage: "Campo \"CEP\" é obrigatório"
     }, 
     street : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'street'"
+        errorMessage: "Campo \"Logradouro\" é obrigatório"
     },
     streetNumber : {
         isInt: true,
         notEmpty: true,
-        errorMessage: "Valor inválido para 'streetNumber'"
+        errorMessage: "Campo \"Número\" é obrigatório"
     },
     streetComplement : {
-        notEmpty: false,
-        errorMessage: "Valor inválido para 'streetComplement'"
+        notEmpty: false
     },
     neighborhood : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'neighborhood'"
+        errorMessage: "Campo \"Bairro\" é obrigatório"
     },
     city : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'city'"
+        errorMessage: "Campo \"Cidade\" é obrigatório"
     },
     state : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'state'"
+        errorMessage: "Campo \"UF\" é obrigatório"
     }
 }
 

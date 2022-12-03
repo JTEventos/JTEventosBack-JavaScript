@@ -1,10 +1,10 @@
 exports.loginSchema = {
     username : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'username'"
+        errorMessage: "Campo \"Usuário\" é obrigatório"
     },
     password : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'password'"
+        errorMessage: "Campo \"Senha\" é obrigatório"
     }
 }

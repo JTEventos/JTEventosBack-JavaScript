@@ -7,7 +7,7 @@ exports.notFound = (param) => {
 }
 
 exports.notValid = (param) => {
-    return { status: 404, msg: `${param} inválido` };
+    return { status: 400, msg: `${param} inválido` };
 }
 
 exports.noData = (param) => {
@@ -19,9 +19,9 @@ exports.exists = (param, param2) => {
 }
 
 exports.onThisDate = (param) => {
-    return { status: 404, msg: `Existe um ou mais ${param} neste intervalo de data` }
+    return { status: 400, msg: `Existe um ou mais ${param} neste intervalo de data` }
 }
 
 exports.insufficientPrivileges = () => {
-    return { status: 401, msg: "Privilégios Insuficientes" }
+    return { status: 401, msg: "Privilégios insuficientes" }
 }

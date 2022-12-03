@@ -8,52 +8,50 @@ exports.getCustomerByIdSchema = {
 exports.createCustomerSchema = {
     name : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'name'"
+        errorMessage: "Campo \"Nome completo\" é obrigatório"
     },
     cpf : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'cpf'"
-    }, 
+        errorMessage: "Campo \"CPF\" é obrigatório"
+    },
+    email : {
+        notEmpty: true,
+        errorMessage: "Campo \"E-mail\" é obrigatório"
+    },
+    phoneNumber : {
+        notEmpty: false
+    },
+    mobileNumber : {
+        notEmpty: true,
+        errorMessage: "Campo \"Telefone celular\" é obrigatório"
+    },
     cep : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'cep'"
+        errorMessage: "Campo \"CEP\" é obrigatório"
     }, 
     street : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'street'"
+        errorMessage: "Campo \"Logradouro\" é obrigatório"
     },
     streetNumber : {
         isInt: true,
         notEmpty: true,
-        errorMessage: "Valor inválido para 'streetNumber'"
+        errorMessage: "Campo \"Número\" é obrigatório"
     },
     streetComplement : {
-        notEmpty: false,
-        errorMessage: "Valor inválido para 'streetComplement'"
+        notEmpty: false
     },
     neighborhood : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'neighborhood'"
+        errorMessage: "Campo \"Bairro\" é obrigatório"
     },
     city : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'city'"
+        errorMessage: "Campo \"Cidade\" é obrigatório"
     },
     state : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'state'"
-    },
-    email : {
-        notEmpty: true,
-        errorMessage: "Valor inválido para 'email'"
-    },
-    mobileNumber : {
-        notEmpty: true,
-        errorMessage: "Valor inválido para 'mobileNumber'"
-    },
-    phoneNumber : {
-        notEmpty: false,
-        errorMessage: "Valor inválido para 'phoneNumber'"
+        errorMessage: "Campo \"UF\" é obrigatório"
     }
 }
 
@@ -64,51 +62,49 @@ exports.updateCustomerSchema = {
     },
     name : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'name'"
+        errorMessage: "Campo \"Nome completo\" é obrigatório"
     },
     cpf : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'cpf'"
-    }, 
+        errorMessage: "Campo \"CPF\" é obrigatório"
+    },
+    email : {
+        notEmpty: true,
+        errorMessage: "Campo \"E-mail\" é obrigatório"
+    },
+    phoneNumber : {
+        notEmpty: false
+    },
+    mobileNumber : {
+        notEmpty: true,
+        errorMessage: "Campo \"Telefone celular\" é obrigatório"
+    },
     cep : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'cep'"
+        errorMessage: "Campo \"CEP\" é obrigatório"
     }, 
     street : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'street'"
+        errorMessage: "Campo \"Logradouro\" é obrigatório"
     },
     streetNumber : {
         isInt: true,
         notEmpty: true,
-        errorMessage: "Valor inválido para 'streetNumber'"
+        errorMessage: "Campo \"Número\" é obrigatório"
     },
     streetComplement : {
-        notEmpty: false,
-        errorMessage: "Valor inválido para 'streetComplement'"
+        notEmpty: false
     },
     neighborhood : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'neighborhood'"
+        errorMessage: "Campo \"Bairro\" é obrigatório"
     },
     city : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'city'"
+        errorMessage: "Campo \"Cidade\" é obrigatório"
     },
     state : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'state'"
-    },
-    email : {
-        notEmpty: true,
-        errorMessage: "Valor inválido para 'email'"
-    },
-    mobileNumber : {
-        notEmpty: true,
-        errorMessage: "Valor inválido para 'mobileNumber'"
-    },
-    phoneNumber : {
-        notEmpty: false,
-        errorMessage: "Valor inválido para 'phoneNumber'"
+        errorMessage: "Campo \"UF\" é obrigatório"
     }
 }

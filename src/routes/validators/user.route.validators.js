@@ -6,25 +6,25 @@ exports.getUserByIdSchema = {
 }
 
 exports.createUserSchema = {
-    name : {
-        notEmpty: true,
-        errorMessage: "Valor inválido para 'name'"
-    },
-    username : {
-        notEmpty: true,
-        errorMessage: "Valor inválido para 'username'"
-    },
-    password : {
-        notEmpty: true,
-        errorMessage: "Valor inválido para 'password'"
-    },
     role : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'role'",
+        errorMessage: "Campo \"Tipo de usuário\" é obrigatório. Selecione uma das opções disponíveis",
         isIn: {
             options:[["ADMIN", "EMPLOYEE"]], 
             errorMessage: "Valor inválido. Valores aceitos: 'ADMIN' ou 'EMPLOYEE'"
         }
+    },
+    name : {
+        notEmpty: true,
+        errorMessage: "Campo \"Nome\" é obrigatório"
+    },
+    username : {
+        notEmpty: true,
+        errorMessage: "Campo \"Usuário\" é obrigatório"
+    },
+    password : {
+        notEmpty: true,
+        errorMessage: "Campo \"Senha\" é obrigatório"
     }
 }
 
@@ -33,24 +33,24 @@ exports.updateUserSchema = {
         in: "params",
         isInt: true
     },
-    name : {
-        notEmpty: true,
-        errorMessage: "Valor inválido para 'name'"
-    },
-    username : {
-        notEmpty: true,
-        errorMessage: "Valor inválido para 'username'"
-    },
-    password : {
-        notEmpty: true,
-        errorMessage: "Valor inválido para 'password'"
-    },
     role : {
         notEmpty: true,
-        errorMessage: "Valor inválido para 'role'",
+        errorMessage: "Campo \"Tipo de usuário\" é obrigatório. Selecione uma das opções disponíveis",
         isIn: {
             options:[["ADMIN", "EMPLOYEE"]], 
             errorMessage: "Valor inválido. Valores aceitos: 'ADMIN' ou 'EMPLOYEE'"
         }
+    },
+    name : {
+        notEmpty: true,
+        errorMessage: "Campo \"Nome\" é obrigatório"
+    },
+    username : {
+        notEmpty: true,
+        errorMessage: "Campo \"Usuário\" é obrigatório"
+    },
+    password : {
+        notEmpty: true,
+        errorMessage: "Campo \"Senha\" é obrigatório"
     }
 }
