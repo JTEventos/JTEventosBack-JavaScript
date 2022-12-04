@@ -12,7 +12,6 @@ exports.createEstablishmentSchema = {
         errorMessage: "Campo \"Logradouro\" é obrigatório"
     },
     streetNumber : {
-        isInt: true,
         notEmpty: true,
         errorMessage: "Campo \"Número\" é obrigatório"
     },
@@ -51,7 +50,6 @@ exports.updateEstablishmentSchema = {
         errorMessage: "Campo \"Logradouro\" é obrigatório"
     },
     streetNumber : {
-        isInt: true,
         notEmpty: true,
         errorMessage: "Campo \"Número\" é obrigatório"
     },

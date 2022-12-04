@@ -11,7 +11,7 @@ exports.createUserSchema = {
         errorMessage: "Campo \"Tipo de usuário\" é obrigatório. Selecione uma das opções disponíveis",
         isIn: {
             options:[["ADMIN", "EMPLOYEE"]], 
-            errorMessage: "Valor inválido. Valores aceitos: 'ADMIN' ou 'EMPLOYEE'"
+            errorMessage: "Valor inválido. Valores aceitos: \"ADMIN\" ou \"EMPLOYEE\""
         }
     },
     name : {
@@ -38,7 +38,7 @@ exports.updateUserSchema = {
         errorMessage: "Campo \"Tipo de usuário\" é obrigatório. Selecione uma das opções disponíveis",
         isIn: {
             options:[["ADMIN", "EMPLOYEE"]], 
-            errorMessage: "Valor inválido. Valores aceitos: 'ADMIN' ou 'EMPLOYEE'"
+            errorMessage: "Valor inválido. Valores aceitos: \"ADMIN\" ou \"EMPLOYEE\""
         }
     },
     name : {

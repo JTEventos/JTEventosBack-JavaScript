@@ -34,7 +34,6 @@ exports.createCustomerSchema = {
         errorMessage: "Campo \"Logradouro\" é obrigatório"
     },
     streetNumber : {
-        isInt: true,
         notEmpty: true,
         errorMessage: "Campo \"Número\" é obrigatório"
     },
@@ -88,7 +87,6 @@ exports.updateCustomerSchema = {
         errorMessage: "Campo \"Logradouro\" é obrigatório"
     },
     streetNumber : {
-        isInt: true,
         notEmpty: true,
         errorMessage: "Campo \"Número\" é obrigatório"
     },
