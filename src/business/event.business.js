@@ -7,7 +7,6 @@ const customerRepository = require("../repository/customer.repository");
 const customerValidators = require("./validators/customer.validator");
 const eventRepository = require("../repository/event.repository");
 const eventValidators = require("./validators/event.validator");
-const dateFormat = require("./utils/date-format");
 
 exports.findAll = async () => {
     const events = await eventRepository.findAll();
@@ -22,27 +21,21 @@ exports.findById = async (id) => {
 }
 
 exports.createEvent = async (eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList) => {
-    const startDateFormated = dateFormat(startDate);
-    const finishDateFormated = dateFormat(finishDate);
-
-    eventValidators.validateFields(eventTypeId, customerId, establishmentId, description, startDateFormated, finishDateFormated);
+    eventValidators.validateFields(eventTypeId, customerId, establishmentId, description, startDate, finishDate);
     const eventType = await eventTypeRepository.findById(eventTypeId);
     eventTypeValidators.validateIfExists(eventType);
     const establishment = await establishmentRepository.findById(establishmentId);
     establishmentValidators.validateIfExists(establishment);
     const customer = await customerRepository.findById(customerId);
     customerValidators.validateIfExists(customer);
-    const events = await eventRepository.findEventsOnThisRangeDate(establishmentId, startDateFormated, finishDateFormated);
+    const events = await eventRepository.findEventsOnThisRangeDate(establishmentId, startDate, finishDate);
     eventValidators.validateDateRange(events);
 
-    await eventRepository.createEvent(eventTypeId, customerId, establishmentId, description, startDateFormated, finishDateFormated, inviteList);
+    await eventRepository.createEvent(eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList);
 }
 
 exports.updateEvent = async (id, eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList) => {
-    const startDateFormated = dateFormat(startDate);
-    const finishDateFormated = dateFormat(finishDate);
-
-    eventValidators.validateFields(eventTypeId, customerId, establishmentId, description, startDateFormated, finishDateFormated);
+    eventValidators.validateFields(eventTypeId, customerId, establishmentId, description, startDate, finishDate);
     const event = await eventRepository.checkIfExists(id);
     eventValidators.validateIfExists(event);
     const eventType = await eventTypeRepository.findById(eventTypeId);
@@ -51,10 +44,10 @@ exports.updateEvent = async (id, eventTypeId, customerId, establishmentId, descr
     establishmentValidators.validateIfExists(establishment);
     const customer = await customerRepository.findById(customerId);
     customerValidators.validateIfExists(customer);
-    const events = await eventRepository.findEventsOnThisRangeDate(establishmentId, startDateFormated, finishDateFormated, id);
+    const events = await eventRepository.findEventsOnThisRangeDate(establishmentId, startDate, finishDate, id);
     eventValidators.validateDateRange(events);
 
-    await eventRepository.updateEvent(id, eventTypeId, customerId, establishmentId, description, startDateFormated, finishDateFormated, inviteList);
+    await eventRepository.updateEvent(id, eventTypeId, customerId, establishmentId, description, startDate, finishDate, inviteList);
 }
 
 exports.deleteEvent = async (id) => {

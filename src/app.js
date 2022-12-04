@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === "development") {
 //Adding routes
 app.use(authenticationRoute);
 
-app.use(auth.verifyJwt);
+// app.use(auth.verifyJwt);
 app.use(userRoute);
 app.use(customerRoute);
 app.use(eventTypeRoute);
