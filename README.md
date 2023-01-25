@@ -10,6 +10,9 @@
 
 API REST do JT Eventos - Uma aplicação que permite que usuários/empresas gerenciem o aluguel de seus estabelecimentos para realização de eventos.
 
+## Front-end:
+https://github.com/JTEventos/JTEventosFront-Angular
+
 # Variáveis de ambiente
 Este projeto utiliza a seguintes variáveis de ambiente:
 
